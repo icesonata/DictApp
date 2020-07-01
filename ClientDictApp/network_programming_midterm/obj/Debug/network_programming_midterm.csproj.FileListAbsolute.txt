@@ -1,0 +1,9 @@
+C:\Users\ASUS\OneDrive\Máy tính\assignments\Network Programming\network_programming_midterm\network_programming_midterm\bin\Debug\network_programming_midterm.exe.config
+C:\Users\ASUS\OneDrive\Máy tính\assignments\Network Programming\network_programming_midterm\network_programming_midterm\bin\Debug\network_programming_midterm.exe
+C:\Users\ASUS\OneDrive\Máy tính\assignments\Network Programming\network_programming_midterm\network_programming_midterm\bin\Debug\network_programming_midterm.pdb
+C:\Users\ASUS\OneDrive\Máy tính\assignments\Network Programming\network_programming_midterm\network_programming_midterm\obj\Debug\network_programming_midterm.csprojAssemblyReference.cache
+C:\Users\ASUS\OneDrive\Máy tính\assignments\Network Programming\network_programming_midterm\network_programming_midterm\obj\Debug\network_programming_midterm.Form1.resources
+C:\Users\ASUS\OneDrive\Máy tính\assignments\Network Programming\network_programming_midterm\network_programming_midterm\obj\Debug\network_programming_midterm.Properties.Resources.resources
+C:\Users\ASUS\OneDrive\Máy tính\assignments\Network Programming\network_programming_midterm\network_programming_midterm\obj\Debug\network_programming_midterm.csproj.GenerateResource.cache
+C:\Users\ASUS\OneDrive\Máy tính\assignments\Network Programming\network_programming_midterm\network_programming_midterm\obj\Debug\network_programming_midterm.exe
+C:\Users\ASUS\OneDrive\Máy tính\assignments\Network Programming\network_programming_midterm\network_programming_midterm\obj\Debug\network_programming_midterm.pdb
