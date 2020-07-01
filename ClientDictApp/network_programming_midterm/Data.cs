@@ -11,8 +11,8 @@ namespace network_programming_midterm
     {
         public string request = "";
         public string content = "";
-        public string timestamp = "";
-        public string username = "";
+        public string timestamp = "";   // 
+        public string username = "";    // IP or username 
         public Data() { }
         public Data(string request, string content, string timestamp, string username)
         {
