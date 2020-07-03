@@ -9,25 +9,29 @@ namespace network_programming_midterm_2
 {
     class Data
     {
-        public string request = "";
+        public string code = "";
         public string content = "";
-        public string timestamp = "";
-        public string username = "";
+        public string timestamp = "";   // 
+        // IP or username (Mostly IP)
+        public string dest = "";
+        public string src = "";
         public Data() { }
-        public Data(string request, string content, string timestamp, string username)
+        public Data(string code, string content, string timestamp, string destination, string source)
         {
-            this.request = request;
+            this.code = code;
             this.content = content;
             this.timestamp = timestamp;
-            this.username = username;
+            this.dest = destination;
+            this.src = source;
         }
         public Data(string serialized)
         {
             Data deserialized = JsonSerializer.Deserialize<Data>(serialized);
-            this.request = deserialized.request;
+            this.code = deserialized.code;
             this.content = deserialized.content;
             this.timestamp = deserialized.timestamp;
-            this.username = deserialized.username;
+            this.dest = deserialized.dest;
+            this.src = deserialized.src;
         }
     }
 }
