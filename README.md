@@ -5,6 +5,9 @@ Final project of NT106.K21.ANTN class
 SQL Server
 - Run CREATE.sql in Database to create new Database on your machine. This registry consists of Users data & History translate request of users.
 
+# Table of Contents
+- [Manual](#manual)
+
 # Manual
 ## CODE fields description
 Meaning of number of CODE field in Data class.
