@@ -26,5 +26,5 @@ Meaning of number of CODE field in Data class.
 | 402 | New connection established successfully |
 | 404 | New connection was failed to established |
 ----------
-CODE values 40X are for expansion feature Load Balancing
+CODE values 40X are for expansion feature Load Balancing.\
 User's translation history is stored locally at User's machine in an Excel file.
