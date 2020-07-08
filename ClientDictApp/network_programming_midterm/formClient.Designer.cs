@@ -1,6 +1,6 @@
 ﻿namespace network_programming_midterm
 {
-    partial class Form1
+    partial class FormClient
     {
         /// <summary>
         /// Required designer variable.
@@ -33,6 +33,7 @@
             this.txt_decoded = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_translation_history = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,7 +48,7 @@
             // btn_translate
             // 
             this.btn_translate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_translate.Location = new System.Drawing.Point(612, 21);
+            this.btn_translate.Location = new System.Drawing.Point(576, 20);
             this.btn_translate.Name = "btn_translate";
             this.btn_translate.Size = new System.Drawing.Size(118, 41);
             this.btn_translate.TabIndex = 2;
@@ -60,7 +61,7 @@
             this.txt_decoded.Location = new System.Drawing.Point(16, 27);
             this.txt_decoded.Name = "txt_decoded";
             this.txt_decoded.ReadOnly = true;
-            this.txt_decoded.Size = new System.Drawing.Size(688, 228);
+            this.txt_decoded.Size = new System.Drawing.Size(755, 228);
             this.txt_decoded.TabIndex = 3;
             this.txt_decoded.Text = "";
             // 
@@ -83,21 +84,33 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(26, 68);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(725, 272);
+            this.groupBox1.Size = new System.Drawing.Size(790, 272);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Bản dịch";
             // 
-            // Form1
+            // btn_translation_history
+            // 
+            this.btn_translation_history.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_translation_history.Location = new System.Drawing.Point(698, 20);
+            this.btn_translation_history.Name = "btn_translation_history";
+            this.btn_translation_history.Size = new System.Drawing.Size(118, 41);
+            this.btn_translation_history.TabIndex = 11;
+            this.btn_translation_history.Text = "Lịch sử";
+            this.btn_translation_history.UseVisualStyleBackColor = true;
+            this.btn_translation_history.Click += new System.EventHandler(this.btn_translation_history_Click);
+            // 
+            // FormClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(775, 368);
+            this.ClientSize = new System.Drawing.Size(841, 360);
+            this.Controls.Add(this.btn_translation_history);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btn_translate);
             this.Controls.Add(this.txt_encoded);
-            this.Name = "Form1";
+            this.Name = "FormClient";
             this.Text = "Dictionary";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
@@ -113,6 +126,7 @@
         private System.Windows.Forms.RichTextBox txt_decoded;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btn_translation_history;
     }
 }
 

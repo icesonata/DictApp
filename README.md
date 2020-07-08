@@ -9,7 +9,7 @@ SQL Server
 - [Manual](#manual)
 
 # Manual
-## CODE fields description
+## CODE field description
 Meaning of number of CODE field in Data class.
 | CODE  | Description |
 | ----- | -----       |
@@ -28,3 +28,5 @@ Meaning of number of CODE field in Data class.
 ----------
 CODE values 40X are for expansion feature Load Balancing.\
 User's translation history is stored locally at User's machine in an Excel file.
+## Usage
+Remember to run server application before run client application.

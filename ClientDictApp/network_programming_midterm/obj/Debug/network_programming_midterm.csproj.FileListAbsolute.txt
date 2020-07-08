@@ -29,9 +29,13 @@ C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictAp
 C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ClientDictApp\network_programming_midterm\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ClientDictApp\network_programming_midterm\bin\Debug\System.ValueTuple.xml
 C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ClientDictApp\network_programming_midterm\obj\Debug\network_programming_midterm.csprojAssemblyReference.cache
-C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ClientDictApp\network_programming_midterm\obj\Debug\network_programming_midterm.Form1.resources
 C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ClientDictApp\network_programming_midterm\obj\Debug\network_programming_midterm.Properties.Resources.resources
 C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ClientDictApp\network_programming_midterm\obj\Debug\network_programming_midterm.csproj.GenerateResource.cache
 C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ClientDictApp\network_programming_midterm\obj\Debug\network_programming_midterm.csproj.CopyComplete
 C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ClientDictApp\network_programming_midterm\obj\Debug\network_programming_midterm.exe
 C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ClientDictApp\network_programming_midterm\obj\Debug\network_programming_midterm.pdb
+C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ClientDictApp\network_programming_midterm\bin\Debug\System.Data.SqlClient.dll
+C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ClientDictApp\network_programming_midterm\bin\Debug\System.Data.SqlClient.xml
+C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ClientDictApp\network_programming_midterm\obj\Debug\network_programming_midterm.FormClient.resources
+C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ClientDictApp\network_programming_midterm\obj\Debug\network_programming_midterm.FormLogin.resources
+C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ClientDictApp\network_programming_midterm\obj\Debug\network_programming_midterm.FormRegister.resources

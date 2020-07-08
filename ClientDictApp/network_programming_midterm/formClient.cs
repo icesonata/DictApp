@@ -14,13 +14,15 @@ using System.Threading;
 
 namespace network_programming_midterm
 {
-    public partial class Form1 : Form
+    public partial class FormClient : Form
     {
-        public Form1()
+        public FormClient()
         {
             InitializeComponent();
             this.FormClosing += new FormClosingEventHandler(Form1_Close);
             CheckForIllegalCrossThreadCalls = false;
+
+            // pop up Login form at the beginning (could be reconfigured for any purpose afterwards)
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -55,7 +57,6 @@ namespace network_programming_midterm
         } 
         private void button1_Click(object sender, EventArgs e)
         {
-
             if (Global.clientThread == default(Thread))
             {
                 string serverIP = "localhost";
@@ -218,6 +219,11 @@ namespace network_programming_midterm
             {
                 return false;
             }
+        }
+
+        private void btn_translation_history_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
