@@ -1,0 +1,37 @@
+Note
+https://stackoverflow.com/questions/21307425/how-to-read-text-file-after-specified-line-in-c-sharp
+https://stackoverflow.com/questions/7596302/read-file-from-position
+https://www.codeproject.com/Questions/661896/Read-Last-150-lines-from-the-large-text-file-using
+https://www.codeproject.com/Questions/554436/C-23plusfindplusaplusspecificpluslineplusfromplusa
+
+Get directory path
+https://stackoverflow.com/questions/816566/how-do-you-get-the-current-project-directory-from-c-sharp-code-when-creating-a-c
+
+Database
+https://daynhauhoc.com/t/xin-file-tu-dien-anh-viet-viet-anh-de-lam-tu-dien/15532
+https://www.informatik.uni-leipzig.de/~duc/Dict/install.html
+https://wordnet.princeton.edu/download/current-version
+http://www.omegawiki.org/index.php/Special:Ow_downloads
+http://www.omegawiki.org/Help:Downloading_the_data
+
+Other database (might be in ENG-ENG format)
+https://github.com/dwyl/english-words
+https://www.eclipse.org/babel/downloads.php
+https://stackoverflow.com/questions/459877/is-there-a-dictionary-or-database-of-english-words-with-each-word-separated-by-s
+https://sourceforge.net/projects/mysqlenglishdictionary/
+
+Google Translation API , packet
+https://github.com/matheuss/google-translate-api
+https://github.com/googleapis/google-cloud-dotnet
+https://cloud.google.com/apis/docs/cloud-client-libraries
+https://cloud.google.com/translate/docs/reference/rest/v3/projects/translateText
+https://developers.google.com/api-client-library/dotnet/guide/aaa_apikeys
+
+Glose API
+https://glosbe.com/a-api
+
+Solution
+https://www.ddth.com/archive/index.php/t-120476.html
+https://stackoverflow.com/questions/8678883/c-sharp-read-specific-bytes-of-an-file
+https://quantrimang.com/xay-dung-mot-ung-dung-tu-dien-don-gian-4973
+https://tailieu.vn/doc/programming-discussion-part4-276495.html
