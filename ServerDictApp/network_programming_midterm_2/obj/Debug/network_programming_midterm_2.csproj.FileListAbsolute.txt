@@ -29,9 +29,12 @@ C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictAp
 C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ServerDictApp\network_programming_midterm_2\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ServerDictApp\network_programming_midterm_2\bin\Debug\System.ValueTuple.xml
 C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ServerDictApp\network_programming_midterm_2\obj\Debug\network_programming_midterm_2.csprojAssemblyReference.cache
-C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ServerDictApp\network_programming_midterm_2\obj\Debug\network_programming_midterm_2.Form1.resources
 C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ServerDictApp\network_programming_midterm_2\obj\Debug\network_programming_midterm_2.Properties.Resources.resources
 C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ServerDictApp\network_programming_midterm_2\obj\Debug\network_programming_midterm_2.csproj.GenerateResource.cache
 C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ServerDictApp\network_programming_midterm_2\obj\Debug\network_programming_midterm_2.csproj.CopyComplete
 C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ServerDictApp\network_programming_midterm_2\obj\Debug\network_programming_midterm_2.exe
 C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ServerDictApp\network_programming_midterm_2\obj\Debug\network_programming_midterm_2.pdb
+C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ServerDictApp\network_programming_midterm_2\bin\Debug\System.Data.SqlClient.dll
+C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ServerDictApp\network_programming_midterm_2\bin\Debug\System.Data.SqlClient.xml
+C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ServerDictApp\network_programming_midterm_2\obj\Debug\network_programming_midterm_2.FormServer.resources
+C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ServerDictApp\network_programming_midterm_2\obj\Debug\network_programming_midterm_2.QueryHistory.resources

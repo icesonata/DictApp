@@ -25,7 +25,7 @@ namespace network_programming_midterm_2
         public static Queue<string> queries_history = new Queue<string>();
         public static Thread serverThread = default(Thread);
         public static Thread updateHistory = default(Thread);
-        // paths
+        // Paths
         public static string historyQueriesPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\history\" + "history.txt";
         public static string dictIndexPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\dict\" + "anhviet109K.index";
         public static string dictDbPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\dict\" + "anhviet109K.dict";

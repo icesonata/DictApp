@@ -97,3 +97,53 @@
 7/1/2020 4:35:12 PM 0.0.0.1:64322; Sent encoded word: ace
 7/1/2020 4:35:15 PM 0.0.0.1:64322; Sent encoded word: she
 7/1/2020 4:35:20 PM 0.0.0.1:64322; Sent encoded word: rose
+7/9/2020 12:18:01 AM 0.0.0.1:51685; Sent encoded word: story
+7/9/2020 12:18:06 AM 0.0.0.1:51685; Sent encoded word: fish
+7/9/2020 8:35:23 AM 0.0.0.1:53861; Sent encoded word: cat
+7/9/2020 8:35:28 AM 0.0.0.1:53861; Sent encoded word: dog
+7/9/2020 8:38:07 AM 0.0.0.1:53989; Sent encoded word: cat
+7/9/2020 2:52:32 PM 0.0.0.1:59208; Sent encoded word: cat
+7/9/2020 2:54:40 PM 0.0.0.1:59297; Sent encoded word: cat
+7/9/2020 6:32:56 PM 0.0.0.1:64221; Sent encoded word: cat
+7/9/2020 6:34:01 PM 0.0.0.1:64244; Sent encoded word: cat
+7/9/2020 6:34:09 PM 0.0.0.1:64244; Sent encoded word: dog
+7/9/2020 6:34:51 PM 0.0.0.1:64244; Sent encoded word: city
+7/9/2020 6:35:02 PM 0.0.0.1:64244; Sent encoded word: big
+7/9/2020 6:35:06 PM 0.0.0.1:64244; Sent encoded word: city
+7/9/2020 6:37:47 PM 0.0.0.1:64244; Sent encoded word: cat
+7/9/2020 6:37:50 PM 0.0.0.1:64244; Sent encoded word: dog
+7/9/2020 6:38:01 PM 0.0.0.1:64445; Sent encoded word: toy
+7/9/2020 10:41:58 PM 0.0.0.1:56404; Sent encoded word: {"username":"long","password":"long"}
+7/9/2020 10:44:35 PM 0.0.0.1:56465; Sent encoded word: {"username":"long","password":"long"}
+7/9/2020 10:51:05 PM 0.0.0.1:56630; Sent encoded word: {"username":"a","password":"a"}
+7/9/2020 11:01:08 PM 0.0.0.1:56895; Sent encoded word: {"username":"long","password":"long"}
+7/9/2020 11:01:15 PM 0.0.0.1:56895; Sent encoded word: {"username":"long","password":"long"}
+7/10/2020 12:26:37 AM 0.0.0.1:59724; Sent encoded word: {"username":"long","password":"long"}
+7/10/2020 12:27:13 AM 0.0.0.1:59747; Sent encoded word: {"username":"long","password":"long"}
+7/10/2020 12:28:51 AM 0.0.0.1:59792; Sent encoded word: {"username":"long","password":"long"}
+7/10/2020 12:29:18 AM 0.0.0.1:59803; Sent encoded word: {"username":"long","password":"long"}
+7/10/2020 12:33:31 AM 0.0.0.1:59916; Sent encoded word: {"username":"long","password":"long"}
+7/10/2020 12:41:01 AM 0.0.0.1:60110; Sent encoded word: {"username":"long","password":"81272EEDEC36D7D4AB9B6DCC8F3B84CCA9F2383D545213CA0A6326983AF7BB0C869F17DD06C95C89322122997144A32DA80AF27E8F976E97D2C5CF55E3AE8B37"}
+7/10/2020 12:41:39 AM 0.0.0.1:60110; Sent encoded word: {"username":"long1","password":"11939A30584BA2F1C2B9BF6DD9930EE731F5B70A957CF150CFFC9F14027AA1CBEDB6743DF032CE851556F0F0F6C35F78930ABC3D6A145C903175D2BFC0C61D50"}
+7/10/2020 12:41:53 AM 0.0.0.1:60110; Sent encoded word: {"username":"long1","password":"02386824446B9BDA17E1C0ABB1304BC20BE8EB42CD7A156A75C37A249CA9FE1320E9692911FD8617C2582F344A78CDD4BFAE09F4F8E4F0104FCF8A02F5C55630"}
+7/10/2020 12:42:00 AM 0.0.0.1:60110; Sent encoded word: {"username":"long1","password":"11939A30584BA2F1C2B9BF6DD9930EE731F5B70A957CF150CFFC9F14027AA1CBEDB6743DF032CE851556F0F0F6C35F78930ABC3D6A145C903175D2BFC0C61D50"}
+7/10/2020 12:46:32 AM 0.0.0.1:60265; Sent encoded word: {"username":"long","password":"81272eedec36d7d4ab9b6dcc8f3b84cca9f2383d545213ca0a6326983af7bb0c869f17dd06c95c89322122997144a32da80af27e8f976e97d2c5cf55e3ae8b37"}
+7/10/2020 12:46:45 AM 0.0.0.1:60265; Sent encoded word: {"username":"long","password":"81272eedec36d7d4ab9b6dcc8f3b84cca9f2383d545213ca0a6326983af7bb0c869f17dd06c95c89322122997144a32da80af27e8f976e97d2c5cf55e3ae8b37"}
+7/10/2020 12:46:53 AM 0.0.0.1:60265; Sent encoded word: {"username":"long","password":"81272eedec36d7d4ab9b6dcc8f3b84cca9f2383d545213ca0a6326983af7bb0c869f17dd06c95c89322122997144a32da80af27e8f976e97d2c5cf55e3ae8b37"}
+7/10/2020 12:48:48 AM 0.0.0.1:60320; Sent encoded word: {"username":"long","password":"81272eedec36d7d4ab9b6dcc8f3b84cca9f2383d545213ca0a6326983af7bb0c869f17dd06c95c89322122997144a32da80af27e8f976e97d2c5cf55e3ae8b37"}
+7/10/2020 1:13:26 AM 0.0.0.1:60893; Sent: {"username":"long","password":"81272eedec36d7d4ab9b6dcc8f3b84cca9f2383d545213ca0a6326983af7bb0c869f17dd06c95c89322122997144a32da80af27e8f976e97d2c5cf55e3ae8b37"}
+7/10/2020 1:13:29 AM 0.0.0.1:60893; Sent: cat
+7/10/2020 1:13:42 AM 0.0.0.1:60893; Sent: sent
+7/10/2020 1:13:47 AM 0.0.0.1:60893; Sent: sent
+7/10/2020 1:27:24 AM 0.0.0.1:61357; Sent: {"username":"long1","password":"11939a30584ba2f1c2b9bf6dd9930ee731f5b70a957cf150cffc9f14027aa1cbedb6743df032ce851556f0f0f6c35f78930abc3d6a145c903175d2bfc0c61d50"}
+7/10/2020 1:27:29 AM 0.0.0.1:61357; Sent: {"username":"long1","password":"81272eedec36d7d4ab9b6dcc8f3b84cca9f2383d545213ca0a6326983af7bb0c869f17dd06c95c89322122997144a32da80af27e8f976e97d2c5cf55e3ae8b37"}
+7/10/2020 1:27:33 AM 0.0.0.1:61357; Sent: {"username":"long1","password":"11939a30584ba2f1c2b9bf6dd9930ee731f5b70a957cf150cffc9f14027aa1cbedb6743df032ce851556f0f0f6c35f78930abc3d6a145c903175d2bfc0c61d50"}
+7/10/2020 1:27:39 AM 0.0.0.1:61357; Sent: {"username":"long","password":"81272eedec36d7d4ab9b6dcc8f3b84cca9f2383d545213ca0a6326983af7bb0c869f17dd06c95c89322122997144a32da80af27e8f976e97d2c5cf55e3ae8b37"}
+7/10/2020 1:27:50 AM 0.0.0.1:61357; Sent: princess
+7/10/2020 3:31:24 PM 0.0.0.1:58725; Sent: {"username":"long","password":"81272eedec36d7d4ab9b6dcc8f3b84cca9f2383d545213ca0a6326983af7bb0c869f17dd06c95c89322122997144a32da80af27e8f976e97d2c5cf55e3ae8b37"}
+7/10/2020 3:31:30 PM 0.0.0.1:58731; Sent: {"username":"long","password":"81272eedec36d7d4ab9b6dcc8f3b84cca9f2383d545213ca0a6326983af7bb0c869f17dd06c95c89322122997144a32da80af27e8f976e97d2c5cf55e3ae8b37"}
+7/10/2020 3:31:39 PM 0.0.0.1:58725; Sent: cat
+7/10/2020 3:31:42 PM 0.0.0.1:58731; Sent: city
+7/10/2020 3:31:55 PM 0.0.0.1:58731; Sent: toy
+7/10/2020 3:32:27 PM 0.0.0.1:58725; Sent: fish
+7/10/2020 3:32:31 PM 0.0.0.1:58731; Sent: dog

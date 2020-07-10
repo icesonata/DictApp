@@ -11,12 +11,14 @@ using System.Net;
 using System.Net.Sockets;
 using System.IO;
 using System.Threading;
+using System.Text.Json;
+using System.Security.Cryptography;
 
 namespace network_programming_midterm_2
 {
-    public partial class Form1 : Form
+    public partial class FormServer : Form
     {
-        public Form1()
+        public FormServer()
         {
             InitializeComponent();
             this.FormClosing += new FormClosingEventHandler(Form1_Close);
@@ -64,7 +66,7 @@ namespace network_programming_midterm_2
             }
             catch (Exception)
             {
-                return "Error happens in reading file";
+                return "Error happens while reading dictionary database";
             }
         }
 
@@ -103,7 +105,7 @@ namespace network_programming_midterm_2
             }
                 catch (Exception)
                 {
-                    Console.WriteLine("Error happens in reading file.");
+                    Console.WriteLine("Error happens while reading file.");
                     return "Error";
                 }
             // if the text is not in the database, error message will pop up
@@ -126,7 +128,7 @@ namespace network_programming_midterm_2
             Global.updateHistory = new Thread(updateQueryHistory);
             Global.updateHistory.Start();
         }
-
+        // doing listening to all new clients
         private void runServer()
         {
             try
@@ -169,6 +171,7 @@ namespace network_programming_midterm_2
 
             }
         }
+        // listen to comming data from client
         private void openClientStream(TcpClient client, NetworkStream stream)
         {
             while (true)
@@ -176,38 +179,76 @@ namespace network_programming_midterm_2
                 try
                 {
                     // receive data and response to client
-                    byte[] receiveBuffer = new byte[100];
+                    byte[] receiveBuffer = new byte[1024];
                     while (!stream.DataAvailable && client.Connected)
                     {
-                        // waiting for comming data
+                        // waiting for coming data
                     }
                     stream.Read(receiveBuffer, 0, receiveBuffer.Length);
 
-                    string encoded_text = Encoding.UTF8.GetString(receiveBuffer);
-                    encoded_text = encoded_text.Replace("\0", string.Empty);
+                    // Get serialize data encrypted by Client
+                    string serialized = Encoding.UTF8.GetString(receiveBuffer);
+                    serialized = serialized.Replace("\0", string.Empty);
 
-                    string result = getTranslated(encoded_text);
-                    int byteCount = Encoding.UTF8.GetByteCount(result);
-                    byte[] response = new byte[byteCount];
-                    response = Encoding.UTF8.GetBytes(result);
+                    // Get decrypted data to deserialize
+                    string decrypted_data = GetDecrypted(serialized);
 
-                    stream.Write(response, 0, response.Length);
+                    Data deserialized = JsonSerializer.Deserialize<Data>(decrypted_data);
+
+                    // string result = getTranslated(serialized);
+                    string response = GetResponse(decrypted_data).GetSerialized();
+                    // get encrypted response
+                    string encrypted_data = GetEncrypted(response);
+
+                    int byteCount = Encoding.UTF8.GetByteCount(encrypted_data);
+                    byte[] data = new byte[byteCount];
+                    data = Encoding.UTF8.GetBytes(encrypted_data);
+
+                    stream.Write(data, 0, data.Length);
 
                     // store connection of client to history file   //////////////
-                    string infoClient = DateTime.Now.ToString() + " " + ((IPEndPoint)client.Client.RemoteEndPoint).Address.MapToIPv4().ToString() + ":" + ((IPEndPoint)client.Client.RemoteEndPoint).Port.ToString() + "; Sent encoded word: " + encoded_text;
+                    string infoClient = DateTime.Now.ToString() + " " + ((IPEndPoint)client.Client.RemoteEndPoint).Address.MapToIPv4().ToString() + ":" + ((IPEndPoint)client.Client.RemoteEndPoint).Port.ToString() + "; Sent: " + deserialized.content;
                     StreamWriter sw = File.AppendText(Global.historyQueriesPath);
-                    Global.queries_history.Enqueue(infoClient + "\n");
+                    // Only show to query text box if request code is 300 indicates translation request.
+                    if(deserialized.code == 300)
+                        Global.queries_history.Enqueue(infoClient + "\n");
                     sw.WriteLine(infoClient);
                     sw.Close();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Error happen in creating connection and network stream");
+                    MessageBox.Show("SERVER: " + ex.ToString());
+                    //MessageBox.Show("Error happen while creating connection and network stream.");
                     return;
                 }
             }
         }
-
+        private Data GetResponse(string serialized)
+        {
+            Data deserialized = JsonSerializer.Deserialize<Data>(serialized);
+            if (deserialized.code == 300)
+            {
+                return new Data(code: 302, content: getTranslated(deserialized.content), dest: deserialized.src, src: deserialized.dest);
+            } else if (deserialized.code == 100)
+            {
+                Dictionary<string, string> UserInfo = JsonSerializer.Deserialize<Dictionary<string, string>>(deserialized.content);
+                if (DB.Authentication(UserInfo["username"], UserInfo["password"]))
+                {
+                    return new Data(code: 102, content: UserInfo["username"], dest: deserialized.src, src: deserialized.dest);
+                }
+                return new Data(code: 104, content: "", dest: deserialized.src, src: deserialized.dest);
+            } else if (deserialized.code == 200)
+            {
+                Dictionary<string, string> UserInfo = JsonSerializer.Deserialize<Dictionary<string, string>>(deserialized.content);
+                if (DB.Register(UserInfo["username"], UserInfo["password"]))
+                {
+                    return new Data(code: 202, content: "", dest: deserialized.src, src: deserialized.dest);
+                }
+                return new Data(code: 204, content: "", dest: deserialized.src, src: deserialized.dest);
+            }
+            MessageBox.Show("Error happened while processing user's request");
+            return null;
+        }
         private void updateQueryHistory()
         {
             // automatically update queries history from clients if there is any
@@ -266,6 +307,24 @@ namespace network_programming_midterm_2
             {
                 // do nothing
             }
+        }
+        private string GetEncrypted(string cleartext)
+        {
+            // Implement encryption here
+            // ...
+            return cleartext;   // Change return value to whatever you want after implementation
+        }
+        private string GetDecrypted(string ciphertext)
+        {
+            // Implement decryption here
+            // ...
+            return ciphertext;  // Change return value to whatever you want after implementation
+        }
+
+        private void btn_query_history_Click(object sender, EventArgs e)
+        {
+            QueryHistory quehis_form = new QueryHistory();
+            quehis_form.Show();
         }
     }
 }

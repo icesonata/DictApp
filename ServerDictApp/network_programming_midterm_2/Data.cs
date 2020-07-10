@@ -4,25 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
+using System.Net;
 
 namespace network_programming_midterm_2
 {
     class Data
     {
-        public string code = "";
-        public string content = "";
-        public string timestamp = "";   // 
+        public int code { get; set; }
+        public string content { get; set; }
+        public string timestamp { get; set; }
         // IP or username (Mostly IP)
-        public string dest = "";
-        public string src = "";
+        public string dest { get; set; }
+        public string src { get; set; }
         public Data() { }
-        public Data(string code, string content, string timestamp, string destination, string source)
+        // Different from Client site, there are multiple clients connect to server.
+        // In the other word, "dest" and "src" addresses must be identified clearly
+        public Data(int code, string content, string dest, string src)
         {
             this.code = code;
             this.content = content;
-            this.timestamp = timestamp;
-            this.dest = destination;
-            this.src = source;
+            this.timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            this.dest = dest;
+            this.src = src;
         }
         public Data(string serialized)
         {
@@ -32,6 +35,10 @@ namespace network_programming_midterm_2
             this.timestamp = deserialized.timestamp;
             this.dest = deserialized.dest;
             this.src = deserialized.src;
+        }
+        public string GetSerialized()
+        {
+            return JsonSerializer.Serialize(this);
         }
     }
 }
