@@ -4,25 +4,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
+using System.Net;
 
 namespace network_programming_midterm
 {
     class Data
     {
-        public string code = "";
-        public string content = "";
-        public string timestamp = "";   // 
+        public int code { get; set; }
+        public string content { get; set; }
+        public string timestamp { get; set; }
         // IP or username (Mostly IP)
-        public string dest = "";
-        public string src = "";
+        public string dest { get; set; }
+        public string src { get; set; }
         public Data() { }
-        public Data(string code, string content, string timestamp, string destination, string source)
-        {
+        public Data(int code, string content, string dest = null, string src = null) {
             this.code = code;
             this.content = content;
-            this.timestamp = timestamp;
-            this.dest = destination;
-            this.src = source;
+            this.timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            if (string.IsNullOrEmpty(dest))
+            {
+                this.dest = GetRemoteIP();
+            }
+            else
+            {
+                this.dest = dest;
+            }
+            if (string.IsNullOrEmpty(src))
+            {
+                this.src = GetLocalIP();
+            }
+            else
+            {
+                this.src = src;
+            }
         }
         public Data(string serialized)
         {
@@ -32,6 +46,22 @@ namespace network_programming_midterm
             this.timestamp = deserialized.timestamp;
             this.dest = deserialized.dest;
             this.src = deserialized.src;
+        }
+        public static string GetRemoteIP()
+        {
+            string addr = ((IPEndPoint)Global.client.Client.RemoteEndPoint).Address.MapToIPv4().ToString();
+            string port = ((IPEndPoint)Global.client.Client.RemoteEndPoint).Port.ToString();
+            return string.Format("{0}:{1}", addr, port);
+        }
+        public static string GetLocalIP()
+        {
+            string addr = ((IPEndPoint)Global.client.Client.LocalEndPoint).Address.MapToIPv4().ToString();
+            string port = ((IPEndPoint)Global.client.Client.LocalEndPoint).Port.ToString();
+            return string.Format("{0}:{1}", addr, port);
+        }
+        public string GetSerialized()
+        {
+            return JsonSerializer.Serialize(this);
         }
     }
 }

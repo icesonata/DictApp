@@ -25,8 +25,10 @@ namespace network_programming_midterm
 
         public string ReadCell(int i, int j)
         {
+            // increment both i and j index because we are assuming they are counted from 0 (index 0)
             i++;
             j++;
+            // check if cell we're choosing is ready to write (or empty to be written)
             if (ws.Cells[i, j].Value2 != null)
             {
                 return ws.Cells[i, j].Value2;

@@ -31,7 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_register = new System.Windows.Forms.Button();
-            this.txt_retype = new System.Windows.Forms.TextBox();
+            this.txt_confirm_password = new System.Windows.Forms.TextBox();
             this.txt_password = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -54,7 +54,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btn_register);
-            this.groupBox1.Controls.Add(this.txt_retype);
+            this.groupBox1.Controls.Add(this.txt_confirm_password);
             this.groupBox1.Controls.Add(this.txt_password);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
@@ -79,22 +79,25 @@
             this.btn_register.TabIndex = 2;
             this.btn_register.Text = "REGISTER";
             this.btn_register.UseVisualStyleBackColor = true;
+            this.btn_register.Click += new System.EventHandler(this.btn_register_Click);
             // 
-            // txt_retype
+            // txt_confirm_password
             // 
-            this.txt_retype.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_retype.Location = new System.Drawing.Point(151, 140);
-            this.txt_retype.Margin = new System.Windows.Forms.Padding(4);
-            this.txt_retype.Name = "txt_retype";
-            this.txt_retype.Size = new System.Drawing.Size(281, 26);
-            this.txt_retype.TabIndex = 1;
+            this.txt_confirm_password.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_confirm_password.Location = new System.Drawing.Point(156, 144);
+            this.txt_confirm_password.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_confirm_password.Name = "txt_confirm_password";
+            this.txt_confirm_password.PasswordChar = '*';
+            this.txt_confirm_password.Size = new System.Drawing.Size(281, 26);
+            this.txt_confirm_password.TabIndex = 1;
             // 
             // txt_password
             // 
             this.txt_password.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_password.Location = new System.Drawing.Point(151, 91);
+            this.txt_password.Location = new System.Drawing.Point(156, 95);
             this.txt_password.Margin = new System.Windows.Forms.Padding(4);
             this.txt_password.Name = "txt_password";
+            this.txt_password.PasswordChar = '*';
             this.txt_password.Size = new System.Drawing.Size(281, 26);
             this.txt_password.TabIndex = 1;
             // 
@@ -102,28 +105,29 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(8, 148);
+            this.label4.Location = new System.Drawing.Point(7, 148);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(138, 20);
+            this.label4.Size = new System.Drawing.Size(147, 20);
             this.label4.TabIndex = 0;
-            this.label4.Text = "Retype password";
+            this.label4.Text = "Confirm Password";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(61, 95);
+            this.label3.Location = new System.Drawing.Point(65, 97);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(83, 20);
             this.label3.TabIndex = 0;
             this.label3.Text = "Password";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // txt_username
             // 
             this.txt_username.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_username.Location = new System.Drawing.Point(151, 42);
+            this.txt_username.Location = new System.Drawing.Point(156, 46);
             this.txt_username.Margin = new System.Windows.Forms.Padding(4);
             this.txt_username.Name = "txt_username";
             this.txt_username.Size = new System.Drawing.Size(281, 26);
@@ -133,7 +137,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(56, 46);
+            this.label2.Location = new System.Drawing.Point(62, 46);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(86, 20);
@@ -161,7 +165,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btn_register;
-        private System.Windows.Forms.TextBox txt_retype;
+        private System.Windows.Forms.TextBox txt_confirm_password;
         private System.Windows.Forms.TextBox txt_password;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;

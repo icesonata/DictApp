@@ -66,6 +66,7 @@
             this.btn_login.TabIndex = 2;
             this.btn_login.Text = "LOGIN";
             this.btn_login.UseVisualStyleBackColor = true;
+            this.btn_login.Click += new System.EventHandler(this.btn_login_Click);
             // 
             // txt_password
             // 
@@ -73,6 +74,7 @@
             this.txt_password.Location = new System.Drawing.Point(127, 91);
             this.txt_password.Margin = new System.Windows.Forms.Padding(4);
             this.txt_password.Name = "txt_password";
+            this.txt_password.PasswordChar = '*';
             this.txt_password.Size = new System.Drawing.Size(281, 26);
             this.txt_password.TabIndex = 1;
             // 
@@ -80,7 +82,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(43, 95);
+            this.label3.Location = new System.Drawing.Point(40, 94);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(83, 20);
@@ -153,6 +155,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormLogin";
             this.Text = "LOGIN";
+            this.Load += new System.EventHandler(this.FormLogin_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

@@ -11,23 +11,25 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using System.Text.Json;
+using System.Security.Cryptography;
 
 namespace network_programming_midterm
 {
     public partial class FormClient : Form
     {
+        // Create 'login' form
+        FormLogin login_form = new FormLogin();
         public FormClient()
         {
             InitializeComponent();
             this.FormClosing += new FormClosingEventHandler(Form1_Close);
             CheckForIllegalCrossThreadCalls = false;
-
-            // pop up Login form at the beginning (could be reconfigured for any purpose afterwards)
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            // create new translation history file if it hasn't exist yet
             string workingDir = Environment.CurrentDirectory;
             string path = Directory.GetParent(workingDir).Parent.Parent.FullName + @"\Records\records.xlsx";
             if (!File.Exists(path))
@@ -38,6 +40,27 @@ namespace network_programming_midterm
                 record.SaveAs($@"{path}");
                 record.Close();
             }
+            // establish connection with server
+            string serverIP = "localhost";
+            int port = 8080;
+            try
+            {
+                // create TcpClient connect to server
+                Global.client = new TcpClient(serverIP, port);
+                Global.stream = Global.client.GetStream();
+                // create Thread to handle network stream of client
+                Global.clientThread = new Thread(runClient);
+                //Global.dataQueue.Enqueue(txt_encoded.Text.Trim().ToLower());
+                Global.clientThread.Start();
+            }
+            catch (Exception exception)
+            {
+                //MessageBox.Show("Error happened while connecting to server\nClosing application");
+                MessageBox.Show(exception.ToString());
+                Application.Exit();
+            }
+            // pop up Login form after connection to server has been established(could be reconfigured for any purpose afterwards)
+            login_form.ShowDialog();
         }
         private void Form1_Close(object sender, EventArgs e)
         {
@@ -55,41 +78,22 @@ namespace network_programming_midterm
                 }
             }
         } 
+        // "Dịch" button
         private void button1_Click(object sender, EventArgs e)
         {
-            if (Global.clientThread == default(Thread))
-            {
-                string serverIP = "localhost";
-                int port = 8080;
-                try
-                {
-                    // create TcpClient connect to server
-                    Global.client = new TcpClient(serverIP, port);
-                    Global.stream = Global.client.GetStream();
-                    // create Thread to handle network stream of client
-                    Global.clientThread = new Thread(runClient);
-                    Global.encodedWords.Enqueue(txt_encoded.Text.Trim().ToLower());
-                    Global.clientThread.Start();
-                }
-                catch (Exception exception)
-                {
-                    MessageBox.Show("Error happened in connecting to server.");
-                    //MessageBox.Show(exception.ToString());
-                }
-
-            }
-            else
-            {
-                Global.encodedWords.Enqueue(txt_encoded.Text.Trim().ToLower());
-            }
+            // add encoded word from client to queue so as to send and get decoded meaning from server
+            string encoded = txt_encoded.Text.Trim().ToLower();
+            Data data = new Data(300, encoded);
+            string encrypted_data = GetEncrypted(data.GetSerialized());
+            Global.dataQueue.Enqueue(encrypted_data);
         }
         private void runClient()
         {
             while (true)
             {
-                if(Global.encodedWords.Count != 0)
+                if(Global.dataQueue.Count != 0)
                 {
-                    getTranslated(Global.encodedWords.Dequeue());
+                    getTranslated(Global.dataQueue.Dequeue());
                 }
             }
         }
@@ -105,7 +109,6 @@ namespace network_programming_midterm
                     byte[] data = new byte[byteCount];
 
                     data = Encoding.UTF8.GetBytes(encoded_text);
-                    //NetworkStream stream = Global.client.GetStream();
                     Global.stream.Write(data, 0, data.Length);
 
                     byte[] receiveBuffer = new byte[10000];
@@ -114,20 +117,43 @@ namespace network_programming_midterm
                         // waiting for comming data
                     }    
                     Global.stream.Read(receiveBuffer, 0, receiveBuffer.Length);
-                    string decoded_text = Encoding.UTF8.GetString(receiveBuffer);
-                    // delete null char
-                    decoded_text = decoded_text.Replace("\0", string.Empty);
-                    // load decoded text to definition box
-                    txt_decoded.Text = decoded_text;
 
-                    addToRecord(encoded_text, decoded_text);
+                    string serialized = Encoding.UTF8.GetString(receiveBuffer);
+                    // delete null char
+                    serialized = serialized.Replace("\0", string.Empty);
+                    // get decrypted data
+                    string decrypted_data = GetDecrypted(serialized);
+                    ProcessingResponse(encoded_text, decrypted_data);
                     
                     Global.stream.Flush();
                 }
-
             }
         }
-
+        private void ProcessingResponse(string encoded, string serialized)
+        {
+            Data deserialized = JsonSerializer.Deserialize<Data>(serialized);
+            if(deserialized.code == 302)
+            {
+                // load decoded text to definition box
+                txt_decoded.Text = deserialized.content;
+                // add encoded and decoded words to user translation history
+                addToRecord(encoded, deserialized.content);
+            } else if(deserialized.code == 102)
+            {
+                Global.username = deserialized.content;
+                MessageBox.Show($"Login succeed\nWelcome, {Global.username}!");
+                login_form.Close();
+            } else if(deserialized.code == 202)
+            {
+                MessageBox.Show("Register succeed\nPlease relogin");
+            } else if(deserialized.code == 104)
+            {
+                MessageBox.Show("Login unsucceed");
+            } else if(deserialized.code == 204)
+            {
+                MessageBox.Show("Register unsucceed");
+            }
+        }
         static void addToRecord(string encoded, string decoded)
         {
             DateTime date = DateTime.Now;
@@ -136,7 +162,7 @@ namespace network_programming_midterm
             // check if file records.xlsx is opened by user
             if (!isFileOpen(Global.recordDbPath))
             {
-                MessageBox.Show("Please close file Excel before translating for recording purpose.");
+                MessageBox.Show("Please close the file Excel before translating for recording purpose.");
                 return;
             }
             // open file excel records.xlsx
@@ -163,7 +189,7 @@ namespace network_programming_midterm
             }
             catch (Exception)
             {
-                MessageBox.Show("Error happens in reading file.");
+                MessageBox.Show("Error happens while reading translation history file.");
             }
 
 
@@ -203,12 +229,11 @@ namespace network_programming_midterm
                 writer.Close();
             }
         }
-
+        // Check filename is opening
         static bool isFileOpen(string path)
         {
             try
             {
-
                 using (Stream stream = new FileStream(path, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
                 {
                     stream.Close();
@@ -223,7 +248,21 @@ namespace network_programming_midterm
 
         private void btn_translation_history_Click(object sender, EventArgs e)
         {
-
+            // Configure translation history feature here
+            // Using any element that can simulate data table as Excel performence such as DataGridView or ListView
+            // ...
+        }
+        private string GetEncrypted(string cleartext)
+        {
+            // Implement encryption here
+            // ...
+            return cleartext;   // Change return value to whatever you want after implementation
+        }
+        private string GetDecrypted(string ciphertext)
+        {
+            // Implement decryption here
+            // ...
+            return ciphertext;  // Change return value to whatever you want after implementation
         }
     }
 }

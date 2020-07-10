@@ -18,10 +18,12 @@ namespace network_programming_midterm
         public static TcpClient client = default(TcpClient);
         public static Thread clientThread = default(Thread);
         public static NetworkStream stream = default(NetworkStream);
-        public static string recordIndexPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Records\index.txt";
-        public static string recordDbPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Records\records.xlsx";
-        public static Queue<string> encodedWords = new Queue<string>();
-        public static Queue<string> definitions = new Queue<string>();
+        public static Queue<string> dataQueue = new Queue<string>();
         public static Thread updateDisplayBox = default(Thread);
+        // Paths
+        public static string recordIndexPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Records\index.txt";    // Contains index of the last element added in database
+        public static string recordDbPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\Records\records.xlsx";    // Excel file storing Translation history
+        // User's credentiality (in this application, just assign it to username which user used to logging in)
+        public static string username = string.Empty;
     }
 }
