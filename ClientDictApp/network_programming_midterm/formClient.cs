@@ -40,13 +40,10 @@ namespace network_programming_midterm
                 record.SaveAs($@"{path}");
                 record.Close();
             }
-            // establish connection with server
-            string serverIP = "localhost";
-            int port = 8080;
             try
             {
                 // create TcpClient connect to server
-                Global.client = new TcpClient(serverIP, port);
+                Global.client = new TcpClient(Global.serverIP, Global.port);
                 Global.stream = Global.client.GetStream();
                 // create Thread to handle network stream of client
                 Global.clientThread = new Thread(runClient);
@@ -61,6 +58,10 @@ namespace network_programming_midterm
             }
             // pop up Login form after connection to server has been established(could be reconfigured for any purpose afterwards)
             login_form.ShowDialog();
+            // after login form have closed, check whether user has successfully logged in or not.
+            // if not, close the application
+            if (string.IsNullOrEmpty(Global.username))
+                Application.Exit();
         }
         private void Form1_Close(object sender, EventArgs e)
         {

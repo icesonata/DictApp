@@ -1,5 +1,6 @@
 # DictApp
-Final project NT106.K21.ANTN class
+An English - Vietnamese dictionary
+Final project of NT106.K21.ANTN
 
 # Prerequisite
 - SQL Server

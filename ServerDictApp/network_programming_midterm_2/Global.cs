@@ -15,9 +15,11 @@ namespace network_programming_midterm_2
 {
     class Global
     {
-        public static TcpListener server = new TcpListener(Dns.GetHostEntry("localhost").AddressList[0], 8080);
-        //public static List<TcpListener> servers = new List<TcpListener>();
-        //public static TcpClient client = default(TcpClient);
+        public static IPAddress DictServerAddr = Dns.GetHostEntry("localhost").AddressList[0];
+        public static int DictServerPort = 8888;
+        public static TcpListener server = new TcpListener(DictServerAddr, DictServerPort);
+        //public static List<TcpListener> servers = new List<TcpListener>();    // multiple server  (feature locked)
+        //public static TcpClient client = default(TcpClient);                  // handle only one client (feature locked)
         //public static NetworkStream stream = default(NetworkStream);
         public static List<TcpClient> clients = new List<TcpClient>();
         public static List<NetworkStream> streams = new List<NetworkStream>();

@@ -15,6 +15,8 @@ namespace network_programming_midterm
 {
     class Global
     {
+        public static string serverIP = "localhost";
+        public static int port = 8080;
         public static TcpClient client = default(TcpClient);
         public static Thread clientThread = default(Thread);
         public static NetworkStream stream = default(NetworkStream);

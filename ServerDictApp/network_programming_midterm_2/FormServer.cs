@@ -119,14 +119,22 @@ namespace network_programming_midterm_2
 
         private void btn_start_Click(object sender, EventArgs e)
         {
-            box_queries.Text += "Server started...\n";
-            btn_start.Enabled = false;
-            // create and start serverThread
-            Global.serverThread = new Thread(runServer);
-            Global.serverThread.Start();
-            // create and start updateHistory
-            Global.updateHistory = new Thread(updateQueryHistory);
-            Global.updateHistory.Start();
+            try
+            {
+                // create and start serverThread
+                Global.serverThread = new Thread(runServer);
+                Global.serverThread.Start();
+                // create and start updateHistory
+                Global.updateHistory = new Thread(updateQueryHistory);
+                Global.updateHistory.Start();
+                //
+                box_queries.Text += "Server started...\n";
+                btn_start.Enabled = false;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
         // doing listening to all new clients
         private void runServer()
@@ -171,26 +179,26 @@ namespace network_programming_midterm_2
 
             }
         }
-        // listen to comming data from client
+        // listen to coming data from client
         private void openClientStream(TcpClient client, NetworkStream stream)
         {
             while (true)
             {
                 try
                 {
-                    // receive data and response to client
-                    byte[] receiveBuffer = new byte[1024];
+                    // receive data and response from server
+                    byte[] receiveBuffer = new byte[4096];
                     while (!stream.DataAvailable && client.Connected)
                     {
-                        // waiting for coming data
+                        // waiting and do nothing
                     }
                     stream.Read(receiveBuffer, 0, receiveBuffer.Length);
 
-                    // Get serialize data encrypted by Client
+                    // Get serialized data encrypted by Client
                     string serialized = Encoding.UTF8.GetString(receiveBuffer);
                     serialized = serialized.Replace("\0", string.Empty);
 
-                    // Get decrypted data to deserialize
+                    // Get decrypted data
                     string decrypted_data = GetDecrypted(serialized);
 
                     Data deserialized = JsonSerializer.Deserialize<Data>(decrypted_data);
