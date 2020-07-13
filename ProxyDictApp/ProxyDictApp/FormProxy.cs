@@ -93,7 +93,7 @@ namespace ProxyDictApp
             {
                 try
                 {
-                    byte[] receiveBuffer = new byte[4096];
+                    byte[] receiveBuffer = new byte[10000];
                     // wait for new data coming
                     while(!stream.DataAvailable) { }
                     stream.Read(receiveBuffer, 0, receiveBuffer.Length);
@@ -112,7 +112,7 @@ namespace ProxyDictApp
             while (true)
             {
                 while (Global.DictServerNetStream.DataAvailable) { }
-                byte[] receiveBuffer = new byte[4096];
+                byte[] receiveBuffer = new byte[10000];
                 Global.DictServerNetStream.Read(receiveBuffer, 0, receiveBuffer.Length);
 
                 string serialized = Encoding.UTF8.GetString(receiveBuffer);
@@ -170,3 +170,5 @@ namespace ProxyDictApp
         }
     }
 }
+
+// receiveBuffer must be larger than 10000 bytes to be able to carry (hold) definition

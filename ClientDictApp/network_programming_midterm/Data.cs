@@ -17,9 +17,10 @@ namespace network_programming_midterm
         public string dest { get; set; }
         public string src { get; set; }
         public Data() { }
+        // This constructor is for client/server request
         public Data(int code, string content, string dest = null, string src = null) {
             this.code = code;
-            this.content = content;
+            this.content = Global.GetEncrypted(content);
             this.timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             if (string.IsNullOrEmpty(dest))
             {
@@ -38,11 +39,12 @@ namespace network_programming_midterm
                 this.src = src;
             }
         }
+        // This constructor is for client/server response
         public Data(string serialized)
         {
             Data deserialized = JsonSerializer.Deserialize<Data>(serialized);
             this.code = deserialized.code;
-            this.content = deserialized.content;
+            this.content = Global.GetDecrypted(deserialized.content);
             this.timestamp = deserialized.timestamp;
             this.dest = deserialized.dest;
             this.src = deserialized.src;

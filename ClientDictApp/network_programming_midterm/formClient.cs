@@ -78,6 +78,9 @@ namespace network_programming_midterm
                     Global.clientThread.Abort();
                 }
             }
+            if (Global.updateDisplayBox != default(Thread))
+                if (Global.updateDisplayBox.IsAlive)
+                    Global.updateDisplayBox.Abort();
         } 
         // "Dịch" button
         private void button1_Click(object sender, EventArgs e)
@@ -85,7 +88,7 @@ namespace network_programming_midterm
             // add encoded word from client to queue so as to send and get decoded meaning from server
             string encoded = txt_encoded.Text.Trim().ToLower();
             Data data = new Data(300, encoded);
-            string encrypted_data = GetEncrypted(data.GetSerialized());
+            string encrypted_data = data.GetSerialized();
             Global.dataQueue.Enqueue(encrypted_data);
         }
         private void runClient()
@@ -99,17 +102,17 @@ namespace network_programming_midterm
             }
         }
         
-        private void getTranslated(string encoded_text)
+        private void getTranslated(string request)
         {
             if (Global.client != default(TcpClient))
             {
                 if(Global.client.Connected && Global.stream != default(NetworkStream))
                 {
-                    int byteCount = Encoding.UTF8.GetByteCount(encoded_text);
+                    int byteCount = Encoding.UTF8.GetByteCount(request);
 
                     byte[] data = new byte[byteCount];
 
-                    data = Encoding.UTF8.GetBytes(encoded_text);
+                    data = Encoding.UTF8.GetBytes(request);
                     Global.stream.Write(data, 0, data.Length);
 
                     byte[] receiveBuffer = new byte[10000];
@@ -122,9 +125,8 @@ namespace network_programming_midterm
                     string serialized = Encoding.UTF8.GetString(receiveBuffer);
                     // delete null char
                     serialized = serialized.Replace("\0", string.Empty);
-                    // get decrypted data
-                    string decrypted_data = GetDecrypted(serialized);
-                    ProcessingResponse(encoded_text, decrypted_data);
+                    //
+                    ProcessingResponse(new Data(request).content, serialized);
                     
                     Global.stream.Flush();
                 }
@@ -132,7 +134,7 @@ namespace network_programming_midterm
         }
         private void ProcessingResponse(string encoded, string serialized)
         {
-            Data deserialized = JsonSerializer.Deserialize<Data>(serialized);
+            Data deserialized = new Data(serialized: serialized);
             if(deserialized.code == 302)
             {
                 // load decoded text to definition box
@@ -209,6 +211,8 @@ namespace network_programming_midterm
                 excel.WriteToCell(i, j, encoded);
                 // write to 'Decoded word' field in excel table
                 excel.WriteToCell(i, j + 1, decoded);
+                // write to 'User' field in excel table
+                excel.WriteToCell(i, j + 2, Global.username);
                 // write and save excel file
                 excel.Save();
 
@@ -253,17 +257,9 @@ namespace network_programming_midterm
             // Using any element that can simulate data table as Excel performence such as DataGridView or ListView
             // ...
         }
-        private string GetEncrypted(string cleartext)
-        {
-            // Implement encryption here
-            // ...
-            return cleartext;   // Change return value to whatever you want after implementation
-        }
-        private string GetDecrypted(string ciphertext)
-        {
-            // Implement decryption here
-            // ...
-            return ciphertext;  // Change return value to whatever you want after implementation
-        }
+
     }
 }
+
+// Note:
+// receiveBuffer must be larger than 10000 bytes to be able to carry (hold) definition

@@ -27,6 +27,7 @@ namespace network_programming_midterm_2
         private void Form1_Load(object sender, EventArgs e)
         {
             CheckForIllegalCrossThreadCalls = false;
+            btn_shutdown.Enabled = false;
         }
 
         private void Form1_Close(object sender, EventArgs e)
@@ -130,6 +131,7 @@ namespace network_programming_midterm_2
                 //
                 box_queries.Text += "Server started...\n";
                 btn_start.Enabled = false;
+                btn_shutdown.Enabled = true;
             }
             catch(Exception ex)
             {
@@ -187,7 +189,7 @@ namespace network_programming_midterm_2
                 try
                 {
                     // receive data and response from server
-                    byte[] receiveBuffer = new byte[4096];
+                    byte[] receiveBuffer = new byte[10000];
                     while (!stream.DataAvailable && client.Connected)
                     {
                         // waiting and do nothing
@@ -198,19 +200,14 @@ namespace network_programming_midterm_2
                     string serialized = Encoding.UTF8.GetString(receiveBuffer);
                     serialized = serialized.Replace("\0", string.Empty);
 
-                    // Get decrypted data
-                    string decrypted_data = GetDecrypted(serialized);
-
-                    Data deserialized = JsonSerializer.Deserialize<Data>(decrypted_data);
+                    Data deserialized = new Data(serialized);
 
                     // string result = getTranslated(serialized);
-                    string response = GetResponse(decrypted_data).GetSerialized();
-                    // get encrypted response
-                    string encrypted_data = GetEncrypted(response);
+                    string response = GetResponse(serialized).GetSerialized();
 
-                    int byteCount = Encoding.UTF8.GetByteCount(encrypted_data);
+                    int byteCount = Encoding.UTF8.GetByteCount(response);
                     byte[] data = new byte[byteCount];
-                    data = Encoding.UTF8.GetBytes(encrypted_data);
+                    data = Encoding.UTF8.GetBytes(response);
 
                     stream.Write(data, 0, data.Length);
 
@@ -233,7 +230,7 @@ namespace network_programming_midterm_2
         }
         private Data GetResponse(string serialized)
         {
-            Data deserialized = JsonSerializer.Deserialize<Data>(serialized);
+            Data deserialized = new Data(serialized);
             if (deserialized.code == 300)
             {
                 return new Data(code: 302, content: getTranslated(deserialized.content), dest: deserialized.src, src: deserialized.dest);
@@ -308,27 +305,15 @@ namespace network_programming_midterm_2
                     // be careful Abort() method of Thread is risky and take a lot of your machine's resources
                 }
 
-                // enable "Start" button
+                // enable "Start" button and disable "Shut down" button
                 btn_start.Enabled = true;
+                btn_shutdown.Enabled = false;
             }
             catch (Exception)
             {
                 // do nothing
             }
         }
-        private string GetEncrypted(string cleartext)
-        {
-            // Implement encryption here
-            // ...
-            return cleartext;   // Change return value to whatever you want after implementation
-        }
-        private string GetDecrypted(string ciphertext)
-        {
-            // Implement decryption here
-            // ...
-            return ciphertext;  // Change return value to whatever you want after implementation
-        }
-
         private void btn_query_history_Click(object sender, EventArgs e)
         {
             QueryHistory quehis_form = new QueryHistory();
@@ -336,3 +321,6 @@ namespace network_programming_midterm_2
         }
     }
 }
+
+// Note:
+// receiveBuffer must be larger than 10000 bytes to be able to carry (hold) definition

@@ -10,6 +10,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.IO;
 using System.Threading;
+using System.Security.Cryptography;
 
 namespace network_programming_midterm_2
 {
@@ -31,5 +32,17 @@ namespace network_programming_midterm_2
         public static string historyQueriesPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\history\" + "history.txt";
         public static string dictIndexPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\dict\" + "anhviet109K.index";
         public static string dictDbPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + @"\dict\" + "anhviet109K.dict";
+        public static string GetEncrypted(string cleartext)
+        {
+            // Implement encryption here
+            // ...
+            return cleartext;   // Change return value to whatever you want after implementation
+        }
+        public static string GetDecrypted(string ciphertext)
+        {
+            // Implement decryption here
+            // ...
+            return ciphertext;  // Change return value to whatever you want after implementation
+        }
     }
 }

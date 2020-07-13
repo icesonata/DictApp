@@ -19,19 +19,21 @@ namespace network_programming_midterm_2
         public Data() { }
         // Different from Client site, there are multiple clients connect to server.
         // In the other word, "dest" and "src" addresses must be identified clearly
+        // This constructor is for client/server request
         public Data(int code, string content, string dest, string src)
         {
             this.code = code;
-            this.content = content;
+            this.content = Global.GetEncrypted(content);
             this.timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             this.dest = dest;
             this.src = src;
         }
+        // This constructor is for client/server response
         public Data(string serialized)
         {
             Data deserialized = JsonSerializer.Deserialize<Data>(serialized);
             this.code = deserialized.code;
-            this.content = deserialized.content;
+            this.content = Global.GetDecrypted(deserialized.content);
             this.timestamp = deserialized.timestamp;
             this.dest = deserialized.dest;
             this.src = deserialized.src;
