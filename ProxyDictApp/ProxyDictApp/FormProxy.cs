@@ -171,4 +171,5 @@ namespace ProxyDictApp
     }
 }
 
+// Note:
 // receiveBuffer must be larger than 10000 bytes to be able to carry (hold) definition
