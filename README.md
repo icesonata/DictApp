@@ -1,6 +1,7 @@
 # DictApp
 Final project of NT106.K21.ANTN\
-An English - Vietnamese dictionary.\
+Team Big-3\
+An English - Vietnamese dictionary.
 
 # Prerequisite
 - SQL Server
