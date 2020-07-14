@@ -100,7 +100,7 @@
             this.Controls.Add(this.btn_start);
             this.Controls.Add(this.groupBox1);
             this.Name = "FormServer";
-            this.Text = "Dictionary Server";
+            this.Text = "Dictionary Server 0";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);

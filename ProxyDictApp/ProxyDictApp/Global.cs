@@ -11,9 +11,11 @@ namespace ProxyDictApp
 {
     class Global
     {
+        // Packet size convention (byte unit)
+        public static int PKTSZ = 10000; 
         // Main dictionary server address
-        public static string MainDictAddr = "localhost";
-        public static int MainDictPort = 8888;  // must be different from Proxy server's
+        public static string DictAddr_0 = "localhost";
+        public static int DictPort_0 = 8888;  // must be different from Proxy server's
         // Proxy server address
         public static IPAddress ProxyServerAddr = Dns.GetHostEntry("localhost").AddressList[0];
         public static int ProxyServerPort = 8080;

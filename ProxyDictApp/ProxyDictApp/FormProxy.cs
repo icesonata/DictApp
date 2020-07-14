@@ -36,7 +36,7 @@ namespace ProxyDictApp
                 Global.ProxyServerThread = new Thread(ProxyServer);
                 Global.ProxyServerThread.Start();
                 //
-                Global.DictServer = new TcpClient(Global.MainDictAddr, Global.MainDictPort);
+                Global.DictServer = new TcpClient(Global.DictAddr_0, Global.DictPort_0);
                 Global.DictServerNetStream = Global.DictServer.GetStream();
                 //
                 Global.DictServerThread = new Thread(CatchResponse);
@@ -93,7 +93,7 @@ namespace ProxyDictApp
             {
                 try
                 {
-                    byte[] receiveBuffer = new byte[10000];
+                    byte[] receiveBuffer = new byte[Global.PKTSZ];
                     // wait for new data coming
                     while(!stream.DataAvailable) { }
                     stream.Read(receiveBuffer, 0, receiveBuffer.Length);
@@ -111,8 +111,8 @@ namespace ProxyDictApp
         {
             while (true)
             {
-                while (Global.DictServerNetStream.DataAvailable) { }
-                byte[] receiveBuffer = new byte[10000];
+                while (!Global.DictServerNetStream.DataAvailable) { }
+                byte[] receiveBuffer = new byte[Global.PKTSZ];
                 Global.DictServerNetStream.Read(receiveBuffer, 0, receiveBuffer.Length);
 
                 string serialized = Encoding.UTF8.GetString(receiveBuffer);
@@ -172,4 +172,4 @@ namespace ProxyDictApp
 }
 
 // Note:
-// receiveBuffer must be larger than 10000 bytes to be able to carry (hold) definition
+// receiveBuffer must be larger than PKTSZ to be able to carry (hold) definition

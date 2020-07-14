@@ -54,6 +54,7 @@ namespace network_programming_midterm
             {
                 //MessageBox.Show("Error happened while connecting to server\nClosing application");
                 MessageBox.Show(exception.ToString());
+                CloseConnection();
                 Application.Exit();
             }
             // pop up Login form after connection to server has been established(could be reconfigured for any purpose afterwards)
@@ -65,7 +66,10 @@ namespace network_programming_midterm
         }
         private void Form1_Close(object sender, EventArgs e)
         {
-
+            CloseConnection();
+        } 
+        private void CloseConnection()
+        {
             if (Global.clientThread != default(Thread))
             {
                 if (Global.client.Connected)
@@ -81,12 +85,17 @@ namespace network_programming_midterm
             if (Global.updateDisplayBox != default(Thread))
                 if (Global.updateDisplayBox.IsAlive)
                     Global.updateDisplayBox.Abort();
-        } 
+        }
         // "Dịch" button
         private void button1_Click(object sender, EventArgs e)
         {
             // add encoded word from client to queue so as to send and get decoded meaning from server
             string encoded = txt_encoded.Text.Trim().ToLower();
+            if(string.IsNullOrEmpty(encoded) || string.IsNullOrWhiteSpace(encoded))
+            {
+                MessageBox.Show("Từ cần dịch không được để trống\n");
+                return;
+            }
             Data data = new Data(300, encoded);
             string encrypted_data = data.GetSerialized();
             Global.dataQueue.Enqueue(encrypted_data);
@@ -104,32 +113,39 @@ namespace network_programming_midterm
         
         private void getTranslated(string request)
         {
-            if (Global.client != default(TcpClient))
+            try
             {
-                if(Global.client.Connected && Global.stream != default(NetworkStream))
+                if (Global.client != default(TcpClient))
                 {
-                    int byteCount = Encoding.UTF8.GetByteCount(request);
-
-                    byte[] data = new byte[byteCount];
-
-                    data = Encoding.UTF8.GetBytes(request);
-                    Global.stream.Write(data, 0, data.Length);
-
-                    byte[] receiveBuffer = new byte[10000];
-                    while (!Global.stream.DataAvailable)
+                    if(Global.client.Connected && Global.stream != default(NetworkStream))
                     {
-                        // waiting for comming data
-                    }    
-                    Global.stream.Read(receiveBuffer, 0, receiveBuffer.Length);
+                        int byteCount = Encoding.UTF8.GetByteCount(request);
 
-                    string serialized = Encoding.UTF8.GetString(receiveBuffer);
-                    // delete null char
-                    serialized = serialized.Replace("\0", string.Empty);
-                    //
-                    ProcessingResponse(new Data(request).content, serialized);
+                        byte[] data = new byte[byteCount];
+
+                        data = Encoding.UTF8.GetBytes(request);
+                        Global.stream.Write(data, 0, data.Length);
+
+                        byte[] receiveBuffer = new byte[Global.PKTSZ];
+                        while (!Global.stream.DataAvailable)
+                        {
+                            // waiting for comming data
+                        }    
+                        Global.stream.Read(receiveBuffer, 0, receiveBuffer.Length);
+
+                        string serialized = Encoding.UTF8.GetString(receiveBuffer);
+                        // delete null char
+                        serialized = serialized.Replace("\0", string.Empty);
+                        //
+                        ProcessingResponse(new Data(request).content, serialized);
                     
-                    Global.stream.Flush();
+                        Global.stream.Flush();
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
         private void ProcessingResponse(string encoded, string serialized)
@@ -155,13 +171,14 @@ namespace network_programming_midterm
             } else if(deserialized.code == 204)
             {
                 MessageBox.Show("Register unsucceed");
+            } else if(deserialized.code == 404)
+            {
+                MessageBox.Show("Servers are overloaded at the moment\nPlease come back later.");
+                Application.Exit();
             }
         }
         static void addToRecord(string encoded, string decoded)
         {
-            DateTime date = DateTime.Now;
-            // open file index.txt and get indices of the last edited cell in the previous launched
-
             // check if file records.xlsx is opened by user
             if (!isFileOpen(Global.recordDbPath))
             {
@@ -175,6 +192,7 @@ namespace network_programming_midterm
             string line, data1, data2;
             data1 = data2 = "";
             i = j = pos = 0;
+            // open file index.txt and get indices of the last edited cell in the previous launched
             var filestream = new FileStream(Global.recordIndexPath, FileMode.Open, FileAccess.Read);
             try
             {
@@ -255,11 +273,11 @@ namespace network_programming_midterm
         {
             // Configure translation history feature here
             // Using any element that can simulate data table as Excel performence such as DataGridView or ListView
-            // ...
+            TranslationHistory transHistory = new TranslationHistory();
+            transHistory.ShowDialog();
         }
-
     }
 }
 
-// Note:
-// receiveBuffer must be larger than 10000 bytes to be able to carry (hold) definition
+// Note
+// receiveBuffer must be smaller than PKTSZ bytes to be able to carry (hold) definition

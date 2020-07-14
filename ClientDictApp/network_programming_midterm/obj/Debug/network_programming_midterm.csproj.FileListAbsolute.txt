@@ -39,3 +39,4 @@ C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictAp
 C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ClientDictApp\network_programming_midterm\obj\Debug\network_programming_midterm.FormClient.resources
 C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ClientDictApp\network_programming_midterm\obj\Debug\network_programming_midterm.FormLogin.resources
 C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ClientDictApp\network_programming_midterm\obj\Debug\network_programming_midterm.FormRegister.resources
+C:\Users\ASUS\OneDrive\Máy tính\Assignments\Network Programming\nwfinal\DictApp\ClientDictApp\network_programming_midterm\obj\Debug\network_programming_midterm.TranslationHistory.resources

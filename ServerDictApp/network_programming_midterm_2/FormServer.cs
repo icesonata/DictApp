@@ -189,7 +189,7 @@ namespace network_programming_midterm_2
                 try
                 {
                     // receive data and response from server
-                    byte[] receiveBuffer = new byte[10000];
+                    byte[] receiveBuffer = new byte[Global.PKTSZ];
                     while (!stream.DataAvailable && client.Connected)
                     {
                         // waiting and do nothing
@@ -234,22 +234,36 @@ namespace network_programming_midterm_2
             if (deserialized.code == 300)
             {
                 return new Data(code: 302, content: getTranslated(deserialized.content), dest: deserialized.src, src: deserialized.dest);
-            } else if (deserialized.code == 100)
+            }
+            else if (deserialized.code == 100)
             {
                 Dictionary<string, string> UserInfo = JsonSerializer.Deserialize<Dictionary<string, string>>(deserialized.content);
                 if (DB.Authentication(UserInfo["username"], UserInfo["password"]))
                 {
                     return new Data(code: 102, content: UserInfo["username"], dest: deserialized.src, src: deserialized.dest);
                 }
-                return new Data(code: 104, content: "", dest: deserialized.src, src: deserialized.dest);
-            } else if (deserialized.code == 200)
+                return new Data(code: 104, content: UserInfo["username"], dest: deserialized.src, src: deserialized.dest);
+            }
+            else if (deserialized.code == 200)
             {
                 Dictionary<string, string> UserInfo = JsonSerializer.Deserialize<Dictionary<string, string>>(deserialized.content);
                 if (DB.Register(UserInfo["username"], UserInfo["password"]))
                 {
-                    return new Data(code: 202, content: "", dest: deserialized.src, src: deserialized.dest);
+                    return new Data(code: 202, content: UserInfo["username"], dest: deserialized.src, src: deserialized.dest);
                 }
-                return new Data(code: 204, content: "", dest: deserialized.src, src: deserialized.dest);
+                return new Data(code: 204, content: UserInfo["username"], dest: deserialized.src, src: deserialized.dest);
+            }
+            else if (deserialized.code == 400)
+            {
+                if (Global.Capacity >= Global.MaxCapacity)
+                    return new Data(code: 404, content: "", dest: deserialized.src, src: deserialized.dest, encrypted: false);
+                Global.Capacity++;
+                return new Data(code: 402, content: "", dest: deserialized.src, src: deserialized.dest, encrypted: false);
+            }
+            else if (deserialized.code == 500)
+            {
+                Global.Capacity--;
+                return new Data(code: 502, content: "", dest: deserialized.src, src: deserialized.dest, encrypted: false);
             }
             MessageBox.Show("Error happened while processing user's request");
             return null;
@@ -308,6 +322,9 @@ namespace network_programming_midterm_2
                 // enable "Start" button and disable "Shut down" button
                 btn_start.Enabled = true;
                 btn_shutdown.Enabled = false;
+
+                // Reset capacity
+                Global.Capacity = 0;
             }
             catch (Exception)
             {
@@ -322,5 +339,5 @@ namespace network_programming_midterm_2
     }
 }
 
-// Note:
-// receiveBuffer must be larger than 10000 bytes to be able to carry (hold) definition
+// Note
+// receiveBuffer must be smaller than PKTSZ bytes to be able to carry (hold) definition
