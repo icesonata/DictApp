@@ -1,6 +1,6 @@
 # DictApp
+Big-3 Team\
 Final project of NT106.K21.ANTN\
-Big-3 Team
 An English - Vietnamese dictionary.
 
 # Prerequisite
@@ -66,6 +66,6 @@ Meaning of number of CODE field in Data class.
 - If you want to reset Excel local database file, remember to reset index.txt in Records directrory to "1    0" afterward. (there's a tab between 1 and 0)
 - There are still plenty of errors and bugs while closing connections between client and server.
 - The Application belongs to Big-3 team including:
-+ Nguyen Hoang Long
-+ Nguyen Thanh Tien
-+ Trinh Huynh Trong Nhan
+    - Nguyen Hoang Long
+    - Nguyen Thanh Tien
+    - Trinh Huynh Trong Nhan
