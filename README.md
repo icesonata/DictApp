@@ -1,6 +1,6 @@
 # DictApp
 Final project of NT106.K21.ANTN\
-Team Big-3\
+Big-3 Team
 An English - Vietnamese dictionary.
 
 # Prerequisite
@@ -65,3 +65,7 @@ Meaning of number of CODE field in Data class.
 - If you only want to experiment simple client-server on this dictionary, go to Global class on Dictionary server 0 or Dictionary server 1, comment line of code which initialize server's port 8888 (9000 to server 1) and uncomment line of code initalize server's port 8080. After that, run the server you have just modified click on start button and run client site.
 - If you want to reset Excel local database file, remember to reset index.txt in Records directrory to "1    0" afterward. (there's a tab between 1 and 0)
 - There are still plenty of errors and bugs while closing connections between client and server.
+- The Application belongs to Big-3 team including:
++ Nguyen Hoang Long
++ Nguyen Thanh Tien
++ Trinh Huynh Trong Nhan
