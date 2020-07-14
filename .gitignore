@@ -1,5 +1,5 @@
 # Because we want to delivery fresh application without any previous usage history,
 # we will ignore changes of vs, Records and history directories
-# .vs
-# .Records
-# .history
+.vs
+.Records
+.history
