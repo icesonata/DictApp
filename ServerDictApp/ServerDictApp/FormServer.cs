@@ -14,7 +14,7 @@ using System.Threading;
 using System.Text.Json;
 using System.Security.Cryptography;
 
-namespace network_programming_midterm_2
+namespace ServerDictApp
 {
     public partial class FormServer : Form
     {

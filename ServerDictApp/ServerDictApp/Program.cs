@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace network_programming_midterm_2
+namespace ServerDictApp
 {
     static class Program
     {

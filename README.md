@@ -58,10 +58,10 @@ Meaning of number of CODE field in Data class.
 # Note
 - The application is for learning and experiment purposes. And I will not hide any error by using try-catch statement.
 - The application are not optimal enough to avoid wasting your machine's resources while running. (but clean afterward)
-- Please ignore any Exception pop up due to closing connection or application.
 - CODE values are personal convention.
 - The application has not handle enough error cases yet.
 - Load Balancer doesn't have encryption.
+- The application are running on simple Server-Client dictionary mode. If you want to try Proxy server or Load Balancer server, read the sentence below.
 - If you only want to experiment simple client-server on this dictionary, go to Global class on Dictionary server 0 or Dictionary server 1, comment line of code which initialize server's port 8888 (9000 to server 1) and uncomment line of code initalize server's port 8080. After that, run the server you have just modified click on start button and run client site.
 - If you want to reset Excel local database file, remember to reset index.txt in Records directrory to "1    0" afterward. (there's a tab between 1 and 0)
 - There are still plenty of errors and bugs while closing connections between client and server.

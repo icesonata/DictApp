@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
-namespace network_programming_midterm_2
+namespace ServerDictApp
 {
     public partial class QueryHistory : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace network_programming_midterm_2
+﻿namespace ServerDictApp
 {
     partial class FormServer
     {

@@ -1,4 +1,4 @@
-﻿namespace network_programming_midterm
+﻿namespace ClientDictApp
 {
     partial class FormClient
     {

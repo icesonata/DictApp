@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 
-namespace network_programming_midterm_2
+namespace ServerDictApp
 {
     class DB
     {

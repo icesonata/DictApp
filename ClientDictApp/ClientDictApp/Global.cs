@@ -12,7 +12,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Security.Cryptography;
 
-namespace network_programming_midterm
+namespace ClientDictApp
 {
     class Global
     {

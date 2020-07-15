@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Text.Json;
 using System.Net;
 
-namespace network_programming_midterm_2
+namespace ServerDictApp
 {
     class Data
     {

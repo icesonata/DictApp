@@ -12,7 +12,7 @@ using System.IO;
 using System.Threading;
 using System.Security.Cryptography;
 
-namespace network_programming_midterm_2
+namespace ServerDictApp
 {
     class Global
     {

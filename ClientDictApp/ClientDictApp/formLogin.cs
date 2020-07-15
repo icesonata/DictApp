@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Text.Json;
 using System.Security.Cryptography;
 
-namespace network_programming_midterm
+namespace ClientDictApp
 {
     public partial class FormLogin : Form
     {
