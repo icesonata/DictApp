@@ -86,7 +86,7 @@
             this.btn_start.Text = "Start Server";
             this.btn_start.UseVisualStyleBackColor = true;
             // 
-            // FormServer
+            // FormServer1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -95,8 +95,9 @@
             this.Controls.Add(this.btn_query_history);
             this.Controls.Add(this.btn_shutdown);
             this.Controls.Add(this.btn_start);
-            this.Name = "FormServer";
+            this.Name = "FormServer1";
             this.Text = "Dictionary Server 1";
+            this.Load += new System.EventHandler(this.FormServer1_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 

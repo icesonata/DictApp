@@ -56,7 +56,7 @@ Meaning of number of CODE field in Data class.
 - Please run both dictionary server 0 and 1 before running Load Balancer.
 
 # Note
-- The application is for learning and experiment purposes.
+- The application is for learning and experiment purposes. And I will not hide any error by using try-catch statement.
 - The application are not optimal enough to avoid wasting your machine's resources while running. (but clean afterward)
 - Please ignore any Exception pop up due to closing connection or application.
 - CODE values are personal convention.

@@ -12,20 +12,20 @@ using System.IO;
 using System.Threading;
 using System.Security.Cryptography;
 
-namespace ServerDictApp_1
+namespace network_programming_midterm_2
 {
     class Global
     {
         // Packet size convention (byte unit)
         public static int PKTSZ = 10000;
         //
-        public static IPAddress DictServerAddr_1 = Dns.GetHostEntry("localhost").AddressList[0];
-        //public static int DictServerPort_1 = 9000;        // Comment this if you don't want to use neither Proxy nor Load Balancing
-        public static int DictServerPort_1 = 8080;      // Uncomment this if you don't want to use neither Proxy nor Load Balancing
-        public static TcpListener server = new TcpListener(DictServerAddr_1, DictServerPort_1);
+        public static IPAddress DictServerAddr = Dns.GetHostEntry("localhost").AddressList[0];
+        //public static int DictServerPort = 8888;        // Comment this if you don't want to use neither Proxy nor Load Balancing
+        public static int DictServerPort = 8080;      // Uncomment this if you don't want to use neither Proxy nor Load Balancing
+        public static TcpListener server = new TcpListener(DictServerAddr, DictServerPort);
         //public static List<TcpListener> servers = new List<TcpListener>();    // multiple server  (feature locked)
         //public static TcpClient client = default(TcpClient);                  // handle only one client (feature locked)
-        //public static NetworkStream stream = default(NetworkStream);
+        //public static NetworkStream stream = default(NetworkStream);          // handle only one client (feature locked)
         public static List<TcpClient> clients = new List<TcpClient>();
         public static List<NetworkStream> streams = new List<NetworkStream>();
         public static List<Thread> clientThreads = new List<Thread>();

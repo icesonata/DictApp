@@ -29,11 +29,6 @@ namespace ServerDictApp_1
             btn_query_history.Click += new EventHandler(btn_query_history_Click);
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            CheckForIllegalCrossThreadCalls = false;
-        }
-
         private void Form1_Close(object sender, EventArgs e)
         {
             closeConnections();
@@ -340,6 +335,11 @@ namespace ServerDictApp_1
         {
             QueryHistory quehis_form = new QueryHistory();
             quehis_form.Show();
+        }
+
+        private void FormServer1_Load(object sender, EventArgs e)
+        {
+            CheckForIllegalCrossThreadCalls = false;
         }
     }
 }
