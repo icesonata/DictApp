@@ -1,2 +1,7 @@
 # Because we want to delivery fresh application without any previous usage history,
 # we will ignore changes of directories contain sensitive information of both owner and user
+.vs
+.bin
+.obj
+.records
+.history
