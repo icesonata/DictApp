@@ -1,6 +1,6 @@
 # DictApp
 Big-3 Team\
-Final project of NT106.K21.ANTN\
+Final project - NT106.K21.ANTN\
 An English - Vietnamese dictionary.
 
 # Prerequisite
