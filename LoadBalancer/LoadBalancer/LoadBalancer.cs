@@ -175,7 +175,7 @@ namespace LoadBalancer
                         NetworkStream stream = client.GetStream();
                         stream.Write(dataSend, 0, dataSend.Length);
                         // Close connection if connection was failed to established
-                        client.Close();
+                        //client.Close();   // this line cause bug
                     }
                 }
                 catch(Exception ex)
