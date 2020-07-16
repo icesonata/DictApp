@@ -49,7 +49,7 @@ Meaning of number of CODE field in Data class.
 
 # Proxy
 - Transparent proxy
-- Proxy model applies only for one server model which means only one server is used. You should use Dictionary server 0 instead.
+- Proxy model applies only for one server model which means only one server is used.
 
 # Load Balance
 - Load balancer is designed for model consist of 2 servers.
