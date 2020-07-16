@@ -21,20 +21,13 @@ namespace ServerDictApp
         public FormServer()
         {
             InitializeComponent();
-            this.FormClosing += new FormClosingEventHandler(Form1_Close);
+            this.FormClosing += new FormClosingEventHandler(FormServer_Close);
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            CheckForIllegalCrossThreadCalls = false;
-            btn_shutdown.Enabled = false;
-        }
-
-        private void Form1_Close(object sender, EventArgs e)
+        private void FormServer_Close(object sender, EventArgs e)
         {
             closeConnections();
         }
-        
+
         static int getDecimalValue(string data)
         {
             string base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
@@ -70,7 +63,6 @@ namespace ServerDictApp
                 return "Error happens while reading dictionary database";
             }
         }
-
         static string getTranslated(string search)
         {
             //preprocess
@@ -104,11 +96,11 @@ namespace ServerDictApp
                 }
                 filestream.Close();
             }
-                catch (Exception)
-                {
-                    Console.WriteLine("Error happens while reading file.");
-                    return "Error";
-                }
+            catch (Exception)
+            {
+                Console.WriteLine("Error happens while reading file.");
+                return "Error";
+            }
             // if the text is not in the database, error message will pop up
             if (search != word)
                 return "Not found";
@@ -125,12 +117,10 @@ namespace ServerDictApp
                 // create and start serverThread
                 Global.serverThread = new Thread(runServer);
                 Global.serverThread.Start();
-                // create and start updateHistory
-                Global.updateHistory = new Thread(updateQueryHistory);
-                Global.updateHistory.Start();
                 //
                 box_queries.Text += "Server started...\n";
                 btn_start.Enabled = false;
+                btn_configuration.Enabled = false;
                 btn_shutdown.Enabled = true;
             }
             catch(Exception ex)
@@ -159,23 +149,19 @@ namespace ServerDictApp
                     if (Global.server.Pending())
                     {
                         var client = Global.server.AcceptTcpClient();
-
                         //
                         Global.clients.Add(client);
-
                         NetworkStream stream = client.GetStream();
-                        //
-                        Global.streams.Add(stream);
-
                         //
                         Thread clientThread = new Thread(() => openClientStream(client, stream));
                         Global.clientThreads.Add(clientThread);
                         clientThread.Start();
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     // do nothing
+                    MessageBox.Show(ex.ToString());
                     break;
                 }
 
@@ -210,13 +196,17 @@ namespace ServerDictApp
                     data = Encoding.UTF8.GetBytes(response);
 
                     stream.Write(data, 0, data.Length);
+                    //stream.Flush();
 
                     // store connection of client to history file   //////////////
-                    string infoClient = DateTime.Now.ToString() + " " + ((IPEndPoint)client.Client.RemoteEndPoint).Address.MapToIPv4().ToString() + ":" + ((IPEndPoint)client.Client.RemoteEndPoint).Port.ToString() + "; Sent: " + deserialized.content;
+                    //string infoClient = DateTime.Now.ToString() + " " + ((IPEndPoint)client.Client.RemoteEndPoint).Address.MapToIPv4().ToString() + ":" + ((IPEndPoint)client.Client.RemoteEndPoint).Port.ToString() + "; Sent: " + deserialized.content;     // For client - server only
+                    string infoClient = DateTime.Now.ToString() + " " + deserialized.src + "; Sent: " + deserialized.content;     // For universal usage such as load balancing, proxy, etc.
                     StreamWriter sw = File.AppendText(Global.historyQueriesPath);
                     // Only show to query text box if request code is 300 indicates translation request.
                     if(deserialized.code == 300)
-                        Global.queries_history.Enqueue(infoClient + "\n");
+                    {
+                        box_queries.Text += infoClient + "\n";
+                    }
                     sw.WriteLine(infoClient);
                     sw.Close();
                 }
@@ -268,28 +258,10 @@ namespace ServerDictApp
             MessageBox.Show("Error happened while processing user's request");
             return null;
         }
-        private void updateQueryHistory()
-        {
-            // automatically update queries history from clients if there is any
-            while (true)
-            {
-                if (Global.queries_history.Count() != 0)
-                {
-                    box_queries.Text += Global.queries_history.Dequeue();
-                }
-            }
-        }
-
-        private void box_queries_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_shutdown_Click(object sender, EventArgs e)
         {
             closeConnections();
         }
-
         private void closeConnections()
         {
             try
@@ -315,26 +287,41 @@ namespace ServerDictApp
                 if (Global.serverThread != default(Thread))
                 {
                     Global.serverThread.Abort();
-                    Global.updateHistory.Abort();
                     // be careful Abort() method of Thread is risky and take a lot of your machine's resources
                 }
 
                 // enable "Start" button and disable "Shut down" button
                 btn_start.Enabled = true;
                 btn_shutdown.Enabled = false;
+                btn_configuration.Enabled = true;
 
                 // Reset capacity
                 Global.Capacity = 0;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 // do nothing
+                MessageBox.Show(ex.ToString());
             }
         }
         private void btn_query_history_Click(object sender, EventArgs e)
         {
             QueryHistory quehis_form = new QueryHistory();
             quehis_form.Show();
+        }
+        private void btn_configuration_Click(object sender, EventArgs e)
+        {
+            if (btn_start.Enabled)
+            {
+                ConfigurationForm config = new ConfigurationForm();
+                config.ShowDialog();
+                this.Text = Global.SERVER_NAME;
+            }
+        }
+        private void FormServer_Load(object sender, EventArgs e)
+        {
+            CheckForIllegalCrossThreadCalls = false;
+            btn_shutdown.Enabled = false;
         }
     }
 }

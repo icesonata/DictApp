@@ -33,6 +33,7 @@
             this.btn_start = new System.Windows.Forms.Button();
             this.btn_shutdown = new System.Windows.Forms.Button();
             this.btn_query_history = new System.Windows.Forms.Button();
+            this.btn_configuration = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,7 +56,6 @@
             this.box_queries.Size = new System.Drawing.Size(434, 362);
             this.box_queries.TabIndex = 0;
             this.box_queries.Text = "";
-            this.box_queries.TextChanged += new System.EventHandler(this.box_queries_TextChanged);
             // 
             // btn_start
             // 
@@ -82,7 +82,7 @@
             // btn_query_history
             // 
             this.btn_query_history.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_query_history.Location = new System.Drawing.Point(551, 172);
+            this.btn_query_history.Location = new System.Drawing.Point(551, 242);
             this.btn_query_history.Name = "btn_query_history";
             this.btn_query_history.Size = new System.Drawing.Size(164, 50);
             this.btn_query_history.TabIndex = 4;
@@ -90,18 +90,30 @@
             this.btn_query_history.UseVisualStyleBackColor = true;
             this.btn_query_history.Click += new System.EventHandler(this.btn_query_history_Click);
             // 
+            // btn_configuration
+            // 
+            this.btn_configuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_configuration.Location = new System.Drawing.Point(551, 172);
+            this.btn_configuration.Name = "btn_configuration";
+            this.btn_configuration.Size = new System.Drawing.Size(164, 50);
+            this.btn_configuration.TabIndex = 5;
+            this.btn_configuration.Text = "Configuration";
+            this.btn_configuration.UseVisualStyleBackColor = true;
+            this.btn_configuration.Click += new System.EventHandler(this.btn_configuration_Click);
+            // 
             // FormServer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(749, 437);
+            this.Controls.Add(this.btn_configuration);
             this.Controls.Add(this.btn_query_history);
             this.Controls.Add(this.btn_shutdown);
             this.Controls.Add(this.btn_start);
             this.Controls.Add(this.groupBox1);
             this.Name = "FormServer";
             this.Text = "Dictionary Server 0";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.FormServer_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -114,6 +126,7 @@
         private System.Windows.Forms.Button btn_start;
         private System.Windows.Forms.Button btn_shutdown;
         private System.Windows.Forms.Button btn_query_history;
+        private System.Windows.Forms.Button btn_configuration;
     }
 }
 
