@@ -17,11 +17,11 @@ An English - Vietnamese dictionary.
 - [Note](#note)
 
 # Manual
-## Configuration
-- Run CREATE.sql in Database to create new database on your machine (You must ensure the database named Dictionary created in your local machine).
-- Run application following these steps:
-1. Run Dictionary Server form named ServerDictApp and click "Start Server".
-2. Run Proxy Server form named ProxyDictApp and click "Turn on".
+## Configuration and running application
+- Run CREATE.sql in Database to create new database on your machine (You must ensure the database named Dictionary created in localhost server of your local machine).
+- Manual running application following these steps: (Simple server-client demonstration)
+1. Run Server in ServerDictApp.
+2. Set your configuration to server site. (Optional)
 3. Run Client form named ClientDictApp and log in to use the application.
 
 ## CODE field description
@@ -46,6 +46,7 @@ Meaning of number of CODE field in Data class.
 - CODE which has value 40X or 50X are for Load Balancing feature.
 - User's translation history is stored locally at User's machine in an Excel file.
 - CODE 302 indicates both found and not found cases to tell Client site.
+- CODE values are personal convention.
 
 # Proxy
 - Transparent proxy
@@ -53,18 +54,16 @@ Meaning of number of CODE field in Data class.
 
 # Load Balance
 - Load balancer is designed for model consist of 2 servers.
-- Please run both dictionary server 0 and 1 before running Load Balancer.
+- Run at least 2 server by simply executing sln file by using Ctrl + F5 before starting running Load Balancer.
+- Load Balancer doesn't do neither encryption nor decryption.
 
 # Note
 - The application is for learning and experiment purposes. And I will not hide any error by using try-catch statement.
-- The application are not optimal enough to avoid wasting your machine's resources while running. (but clean afterward)
-- CODE values are personal convention.
-- The application has not handle enough error cases yet.
-- Load Balancer doesn't have encryption.
-- The application are running on simple Server-Client dictionary mode. If you want to try Proxy server or Load Balancer server, read the sentence below.
-- If you only want to experiment simple client-server on this dictionary, go to Global class on Dictionary server 0 or Dictionary server 1, comment line of code which initialize server's port 8888 (9000 to server 1) and uncomment line of code initalize server's port 8080. After that, run the server you have just modified click on start button and run client site.
+- The application are not optimal enough to avoid wasting your machine's resources only while running.
+- The application has not handle enough error cases yet, especially cleaning stage afterward.
+- Note that by default client will connect to server application at port 8080 so the proxy server and load balancing server are set with port 8080 to suit client's preconfiguration. Make sure to consider whether your machine's ports are available or not. You can change the code to suit your machine depended on your flexibility.  
+- Note that if you don't configure capacity at Server site, it will be automatically set by default value which is equal to 2. 
 - If you want to reset Excel local database file, remember to reset index.txt in Records directrory to "1    0" afterward. (there's a tab between 1 and 0)
-- There are still plenty of errors and bugs while closing connections between client and server.
 - The Application belongs to Big-3 team including:
     - **Nguyen Hoang Long**
     - **Nguyen Thanh Tien**
