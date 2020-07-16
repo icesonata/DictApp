@@ -3,5 +3,5 @@
 .vs
 .records
 .history
-bin/
-obj/
+**/bin
+**/obj
