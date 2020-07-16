@@ -44,7 +44,14 @@ namespace ClientDictApp
         {
             Data deserialized = JsonSerializer.Deserialize<Data>(serialized);
             this.code = deserialized.code;
-            this.content = Global.GetDecrypted(deserialized.content);
+            if (code == 404)
+            {
+                this.content = deserialized.content;
+            }
+            else
+            {
+                this.content = Global.GetDecrypted(deserialized.content);
+            }
             this.timestamp = deserialized.timestamp;
             this.dest = deserialized.dest;
             this.src = deserialized.src;

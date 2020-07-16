@@ -33,10 +33,10 @@
             this.btn_register = new System.Windows.Forms.Button();
             this.txt_confirm_password = new System.Windows.Forms.TextBox();
             this.txt_password = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lbl_confirm_password = new System.Windows.Forms.Label();
+            this.lbl_password = new System.Windows.Forms.Label();
             this.txt_username = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lbl_username = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,10 +56,10 @@
             this.groupBox1.Controls.Add(this.btn_register);
             this.groupBox1.Controls.Add(this.txt_confirm_password);
             this.groupBox1.Controls.Add(this.txt_password);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.lbl_confirm_password);
+            this.groupBox1.Controls.Add(this.lbl_password);
             this.groupBox1.Controls.Add(this.txt_username);
-            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.lbl_username);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(22, 81);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
@@ -101,28 +101,27 @@
             this.txt_password.Size = new System.Drawing.Size(281, 26);
             this.txt_password.TabIndex = 1;
             // 
-            // label4
+            // lbl_confirm_password
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(7, 148);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(147, 20);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Confirm Password";
+            this.lbl_confirm_password.AutoSize = true;
+            this.lbl_confirm_password.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_confirm_password.Location = new System.Drawing.Point(7, 148);
+            this.lbl_confirm_password.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_confirm_password.Name = "lbl_confirm_password";
+            this.lbl_confirm_password.Size = new System.Drawing.Size(147, 20);
+            this.lbl_confirm_password.TabIndex = 0;
+            this.lbl_confirm_password.Text = "Confirm Password";
             // 
-            // label3
+            // lbl_password
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(65, 97);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(83, 20);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Password";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+            this.lbl_password.AutoSize = true;
+            this.lbl_password.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_password.Location = new System.Drawing.Point(65, 97);
+            this.lbl_password.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_password.Name = "lbl_password";
+            this.lbl_password.Size = new System.Drawing.Size(83, 20);
+            this.lbl_password.TabIndex = 0;
+            this.lbl_password.Text = "Password";
             // 
             // txt_username
             // 
@@ -133,16 +132,16 @@
             this.txt_username.Size = new System.Drawing.Size(281, 26);
             this.txt_username.TabIndex = 1;
             // 
-            // label2
+            // lbl_username
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(62, 46);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(86, 20);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Username";
+            this.lbl_username.AutoSize = true;
+            this.lbl_username.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_username.Location = new System.Drawing.Point(62, 46);
+            this.lbl_username.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl_username.Name = "lbl_username";
+            this.lbl_username.Size = new System.Drawing.Size(86, 20);
+            this.lbl_username.TabIndex = 0;
+            this.lbl_username.Text = "Username";
             // 
             // FormRegister
             // 
@@ -153,6 +152,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "FormRegister";
             this.Text = "REGISTER";
+            this.Load += new System.EventHandler(this.FormRegister_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -167,9 +167,9 @@
         private System.Windows.Forms.Button btn_register;
         private System.Windows.Forms.TextBox txt_confirm_password;
         private System.Windows.Forms.TextBox txt_password;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbl_confirm_password;
+        private System.Windows.Forms.Label lbl_password;
         private System.Windows.Forms.TextBox txt_username;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbl_username;
     }
 }

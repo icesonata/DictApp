@@ -35,25 +35,25 @@ namespace ClientDictApp
         public static TripleDESCryptoServiceProvider tripleDESCrypto = default(TripleDESCryptoServiceProvider);
         public static string GetEncrypted(string cleartext)
         {
-            Global.tripleDESCrypto = new TripleDESCryptoServiceProvider();
+            tripleDESCrypto = new TripleDESCryptoServiceProvider();
             byte[] byte_cleartext = Encoding.UTF8.GetBytes(cleartext);
             // 16 bytes key length
-            Global.tripleDESCrypto.Key = Encoding.UTF8.GetBytes("Big3TeamProNT106");
-            Global.tripleDESCrypto.Mode = CipherMode.ECB;
+            tripleDESCrypto.Key = Encoding.UTF8.GetBytes("Big3TeamProNT106");
+            tripleDESCrypto.Mode = CipherMode.ECB;
             string ciphertext = Convert.ToBase64String(
-                Global.tripleDESCrypto.CreateEncryptor().TransformFinalBlock(
+                tripleDESCrypto.CreateEncryptor().TransformFinalBlock(
                     byte_cleartext, 0, byte_cleartext.Length));
             return ciphertext;
         }
         public static string GetDecrypted(string ciphertext)
         {
-            Global.tripleDESCrypto = new TripleDESCryptoServiceProvider();
+            tripleDESCrypto = new TripleDESCryptoServiceProvider();
             byte[] byte_ciphertext = Convert.FromBase64String(ciphertext);
             // 16 bytes key length
-            Global.tripleDESCrypto.Key = Encoding.UTF8.GetBytes("Big3TeamProNT106");
-            Global.tripleDESCrypto.Mode = CipherMode.ECB;
+            tripleDESCrypto.Key = Encoding.UTF8.GetBytes("Big3TeamProNT106");
+            tripleDESCrypto.Mode = CipherMode.ECB;
             string cleartext = Encoding.UTF8.GetString(
-                Global.tripleDESCrypto.CreateDecryptor().TransformFinalBlock(
+                tripleDESCrypto.CreateDecryptor().TransformFinalBlock(
                     byte_ciphertext, 0, byte_ciphertext.Length));
             return cleartext;
         }

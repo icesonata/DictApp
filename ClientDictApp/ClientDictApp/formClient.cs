@@ -23,48 +23,10 @@ namespace ClientDictApp
         public FormClient()
         {
             InitializeComponent();
-            this.FormClosing += new FormClosingEventHandler(Form1_Close);
+            this.FormClosing += new FormClosingEventHandler(FormClient_Close);
             CheckForIllegalCrossThreadCalls = false;
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            // create new translation history file if it hasn't exist yet
-            string workingDir = Environment.CurrentDirectory;
-            string path = Directory.GetParent(workingDir).Parent.Parent.FullName + @"\Records\records.xlsx";
-            if (!File.Exists(path))
-            {
-                Excel record = new Excel();
-                record.CreateNewFile();
-                record.CreateNewSheet();
-                record.SaveAs($@"{path}");
-                record.Close();
-            }
-            try
-            {
-                // create TcpClient connect to server
-                Global.client = new TcpClient(Global.serverIP, Global.port);
-                Global.stream = Global.client.GetStream();
-                // create Thread to handle network stream of client
-                Global.clientThread = new Thread(runClient);
-                //Global.dataQueue.Enqueue(txt_encoded.Text.Trim().ToLower());
-                Global.clientThread.Start();
-            }
-            catch (Exception exception)
-            {
-                //MessageBox.Show("Error happened while connecting to server\nClosing application");
-                MessageBox.Show(exception.ToString());
-                CloseConnection();
-                Application.Exit();
-            }
-            // pop up Login form after connection to server has been established(could be reconfigured for any purpose afterwards)
-            login_form.ShowDialog();
-            // after login form have closed, check whether user has successfully logged in or not.
-            // if not, close the application
-            if (string.IsNullOrEmpty(Global.username))
-                Application.Exit();
-        }
-        private void Form1_Close(object sender, EventArgs e)
+        private void FormClient_Close(object sender, EventArgs e)
         {
             CloseConnection();
         } 
@@ -74,7 +36,6 @@ namespace ClientDictApp
             {
                 if (Global.client.Connected)
                 {
-                    //Global.stream.Close();
                     Global.client.Close();
                 }
                 if (Global.clientThread != default(Thread))
@@ -85,20 +46,6 @@ namespace ClientDictApp
             if (Global.updateDisplayBox != default(Thread))
                 if (Global.updateDisplayBox.IsAlive)
                     Global.updateDisplayBox.Abort();
-        }
-        // "Dịch" button
-        private void button1_Click(object sender, EventArgs e)
-        {
-            // add encoded word from client to queue so as to send and get decoded meaning from server
-            string encoded = txt_encoded.Text.Trim().ToLower();
-            if(string.IsNullOrEmpty(encoded) || string.IsNullOrWhiteSpace(encoded))
-            {
-                MessageBox.Show("Từ cần dịch không được để trống\n");
-                return;
-            }
-            Data data = new Data(300, encoded);
-            string encrypted_data = data.GetSerialized();
-            Global.dataQueue.Enqueue(encrypted_data);
         }
         private void runClient()
         {
@@ -174,6 +121,7 @@ namespace ClientDictApp
             } else if(deserialized.code == 404)
             {
                 MessageBox.Show("Servers are overloaded at the moment\nPlease come back later.");
+                login_form.Close();
                 Application.Exit();
             }
         }
@@ -275,6 +223,71 @@ namespace ClientDictApp
             // Using any element that can simulate data table as Excel performence such as DataGridView or ListView
             TranslationHistory transHistory = new TranslationHistory();
             transHistory.ShowDialog();
+        }
+
+        private void btn_logout_Click(object sender, EventArgs e)
+        {
+            Global.username = string.Empty;
+            txt_encoded.Text = string.Empty;
+            txt_decoded.Text = string.Empty;
+            // pop up Login form after connection to server has been established(could be reconfigured for any purpose afterwards)
+            login_form.ShowDialog();
+            // after login form have closed, check whether user has successfully logged in or not.
+            // if not, close the application
+            if (string.IsNullOrEmpty(Global.username))
+                Application.Exit();
+        }
+
+        private void button_translate_Click(object sender, EventArgs e)
+        {
+            // add encoded word from client to queue so as to send and get decoded meaning from server
+            string encoded = txt_encoded.Text.Trim().ToLower();
+            if (string.IsNullOrEmpty(encoded) || string.IsNullOrWhiteSpace(encoded))
+            {
+                MessageBox.Show("Từ cần dịch không được để trống\n");
+                return;
+            }
+            Data data = new Data(300, encoded);
+            string encrypted_data = data.GetSerialized();
+            Global.dataQueue.Enqueue(encrypted_data);
+        }
+
+        private void FormClient_Load(object sender, EventArgs e)
+        {
+            // create new translation history file if it hasn't exist yet
+            string workingDir = Environment.CurrentDirectory;
+            string path = Directory.GetParent(workingDir).Parent.Parent.FullName + @"\Records\records.xlsx";
+            if (!File.Exists(path))
+            {
+                Excel record = new Excel();
+                record.CreateNewFile();
+                record.CreateNewSheet();
+                record.SaveAs($@"{path}");
+                record.Close();
+            }
+            try
+            {
+                // create TcpClient connect to server
+                Global.client = new TcpClient(Global.serverIP, Global.port);
+                Global.stream = Global.client.GetStream();
+                // create Thread to handle network stream of client
+                Global.clientThread = new Thread(runClient);
+                //Global.dataQueue.Enqueue(txt_encoded.Text.Trim().ToLower());
+                Global.clientThread.Start();
+            }
+            catch (Exception exception)
+            {
+                //MessageBox.Show("Error happened while connecting to server\nClosing application");
+                MessageBox.Show(exception.ToString());
+                CloseConnection();
+                Application.Exit();
+            }
+            // pop up Login form after connection to server has been established(could be reconfigured for any purpose afterwards)
+            login_form.ShowDialog();
+            // after login form have closed, check whether user has successfully logged in or not.
+            // if not, close the application
+            if (string.IsNullOrEmpty(Global.username))
+                Application.Exit();
         }
     }
 }

@@ -19,11 +19,6 @@ namespace ClientDictApp
             InitializeComponent();
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void btn_register_Click(object sender, EventArgs e)
         {
             bool valid_flag = string.IsNullOrWhiteSpace(txt_username.Text) || string.IsNullOrEmpty(txt_username.Text)
@@ -51,7 +46,16 @@ namespace ClientDictApp
                 {
                     MessageBox.Show("Password and Confirm password were not matched.");
                 }
+                // cleaning
+                txt_username.Text = string.Empty;
+                txt_password.Text = string.Empty;
+                txt_confirm_password.Text = string.Empty;
             }
+        }
+
+        private void FormRegister_Load(object sender, EventArgs e)
+        {
+            this.ActiveControl = txt_username;
         }
     }
 }

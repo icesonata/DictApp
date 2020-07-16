@@ -44,7 +44,10 @@ namespace ClientDictApp
                 };
                 Data data = new Data(100, JsonSerializer.Serialize(userInfo));
                 Global.dataQueue.Enqueue(data.GetSerialized());
-                //
+                // cleaning
+                txt_username.Text = string.Empty;
+                txt_password.Text = string.Empty;
+                // if username is registered
                 if(!string.IsNullOrEmpty(Global.username))
                     this.Close();
             }
