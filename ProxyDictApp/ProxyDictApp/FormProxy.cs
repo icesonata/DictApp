@@ -22,6 +22,7 @@ namespace ProxyDictApp
             InitializeComponent();
             this.FormClosing += new FormClosingEventHandler(FormProxy_Closing);
             btn_turnoff.Enabled = false;
+            this.Text = Global.SERVER_NAME;
         }
         private void FormProxy_Closing(object sender, EventArgs e)
         {
@@ -36,7 +37,7 @@ namespace ProxyDictApp
                 Global.ProxyServerThread = new Thread(ProxyServer);
                 Global.ProxyServerThread.Start();
                 //
-                Global.DictServer = new TcpClient(Global.DictAddr_0, Global.DictPort_0);
+                Global.DictServer = new TcpClient(Global.DictServerAddr, Global.DictServerPort);
                 Global.DictServerNetStream = Global.DictServer.GetStream();
                 //
                 Global.DictServerThread = new Thread(CatchResponse);
@@ -45,6 +46,8 @@ namespace ProxyDictApp
                 txtBox_query_history.Text += "Proxy server is running...\n";
                 btn_turnoff.Enabled = true;
                 btn_turnon.Enabled = false;
+                btn_dictserverconfig.Enabled = false;
+                btn_proxyconfig.Enabled = false;
             }
             catch(Exception ex)
             {
@@ -162,11 +165,26 @@ namespace ProxyDictApp
             //
             btn_turnon.Enabled = true;
             btn_turnoff.Enabled = false;
+            btn_dictserverconfig.Enabled = true;
+            btn_proxyconfig.Enabled = true;
         }
 
         private void FormProxy_Load(object sender, EventArgs e)
         {
             CheckForIllegalCrossThreadCalls = false;
+        }
+
+        private void btn_dictserverconfig_Click(object sender, EventArgs e)
+        {
+            ConfigureDictServer dictconfig = new ConfigureDictServer();
+            dictconfig.ShowDialog();
+        }
+
+        private void btn_proxyconfig_Click(object sender, EventArgs e)
+        {
+            ConfigureProxyServer proxyconfig = new ConfigureProxyServer();
+            proxyconfig.ShowDialog();
+            this.Text = Global.SERVER_NAME;
         }
     }
 }

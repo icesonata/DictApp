@@ -74,7 +74,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigureProxyServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigureProxyServer.Designer.cs">
+      <DependentUpon>ConfigureProxyServer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data.cs" />
+    <Compile Include="ConfigureDictServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigureDictServer.Designer.cs">
+      <DependentUpon>ConfigureDictServer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Global.cs" />
     <Compile Include="FormProxy.cs">
       <SubType>Form</SubType>
@@ -84,6 +96,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ConfigureDictServer.resx">
+      <DependentUpon>ConfigureDictServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigureProxyServer.resx">
+      <DependentUpon>ConfigureProxyServer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormProxy.resx">
       <DependentUpon>FormProxy.cs</DependentUpon>
     </EmbeddedResource>
