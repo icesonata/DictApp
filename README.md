@@ -54,8 +54,8 @@ Meaning of number of CODE field in Data class.
 
 # Load Balance
 - Load balancer is designed for model consist of 2 servers.
-- Run at least 2 server by simply executing sln file by using Ctrl + F5 before starting running Load Balancer.
 - Load Balancer doesn't do neither encryption nor decryption.
+- Run at least 2 server by simply executing sln file by using Ctrl + F5 before starting running Load Balancer. Require a server has localhost address with port 8888 and one has locahost address with port 9000.
 
 # Note
 - The application is for learning and experiment purposes. And I will not hide any error by using try-catch statement.
