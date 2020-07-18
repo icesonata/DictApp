@@ -35,3 +35,10 @@ https://www.ddth.com/archive/index.php/t-120476.html
 https://stackoverflow.com/questions/8678883/c-sharp-read-specific-bytes-of-an-file
 https://quantrimang.com/xay-dung-mot-ung-dung-tu-dien-don-gian-4973
 https://tailieu.vn/doc/programming-discussion-part4-276495.html
+
+How to create exe file
+https://stackoverflow.com/questions/34255864/how-do-i-create-an-exe-file-from-windows-forms
+
+Multiple project use the same NuGet packages directory
+https://stackoverflow.com/questions/26792624/how-to-enforce-same-nuget-package-version-across-multiple-c-sharp-projects
+https://stackoverflow.com/questions/36462139/shared-nuget-package-across-multiple-projects-and-solutions
