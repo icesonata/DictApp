@@ -1,5 +1,5 @@
 # DictApp
-Big-3 Team - Final project - NT106.K21.ANTN\
+Big-3 Team - Final project - NT106 Introduction to Computer Network Programming\
 An English - Vietnamese dictionary application.
 
 # Prerequisite
