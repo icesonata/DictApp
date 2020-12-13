@@ -3,7 +3,7 @@ Big-3 Team - Final project - NT106.K21.ANTN\
 An English - Vietnamese dictionary application.
 
 # Prerequisite
-Those complements and environments below are used in building this application.
+Those complements and environments below, which require manual installation, are used in building this application.
 - SQL Server 18
 - Visual Studio 2019
 - .NET Framework 4.6
