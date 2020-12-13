@@ -68,6 +68,6 @@ Meaning of number of CODE field in Data class.
 - To delete translation history, delete all data except the header in the Excel file locating in <Path-to-directory>/DictApp/ClientDictApp/records/, also reset *index.txt*'s content in the same directory to "1   0" (there is a tab between 1 and 0).
 
 \[Claimer] This application belongs to Big-3 team including:
-    - **Nguyen Hoang Long**
-    - **Nguyen Thanh Tien**
-    - **Trinh Huynh Trong Nhan**
+- **Nguyen Hoang Long**
+- **Nguyen Thanh Tien**
+- **Trinh Huynh Trong Nhan**
