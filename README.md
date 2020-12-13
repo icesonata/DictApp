@@ -49,7 +49,7 @@ Meaning of number of CODE field in Data class.
 - CODE 302 indicates whether the word requested is found in the database or not.
 
 ## Storage
-- Translation history of each user is stored locally at User's machine in an Excel file, which can be found in <Path-to-directory>/DictApp/ClientDictApp/records/.
+- Translation history of each user is stored locally at User's machine in an Excel file, which can be found in *<Path-to-directory>/DictApp/ClientDictApp/records/*.
 
 # Proxy
 - Proxy type: Transparent proxy
@@ -57,7 +57,7 @@ Meaning of number of CODE field in Data class.
 
 # Load Balance
 - Designed for a topology consisting of 2 servers and clients.
-- Requires at least 2 servers in running state to execute, there are two ways to create multiple server from a server source code are either executing *.sln* file using Ctrl + F5 or execute *.exe* as many time as number of servers we need.
+- Requires at least 2 servers in running state to execute, there are two ways to create multiple server from a server source code are either executing *.sln* file using Ctrl + F5 or running server's *.exe* file in */DictApp/ServerDictApp/ServerDictApp/bin/Debug* or */DictApp/ServerDictApp/ServerDictApp/bin/Release* depending on which type of running we conducted as many time as number of servers we need. For *Debug* or *Release* folder to existed, user must run the application once with the our corresponding *Active solution configuration* option in Visual Studio.
 - Requires at least 2 servers running with port 8888 and 9000 at simultaneously, moreover, we can change this configuration in the source code of the load balancer.
 
 # Note
@@ -65,7 +65,7 @@ Meaning of number of CODE field in Data class.
 - The application has not been optimized hence leading to huge consumption in computer resource.
 - Note that by default client will connect to server application at port 8080 so the proxy server and load balancing server are set with port 8080 to suit client's preconfiguration. Thus, make sure the required ports for this application are available on our machine or we can change it directly in the source code.
 - Capacity of server has a default value which is up to 2 clients are handled by the server. 
-- To delete translation history, delete all data except the header in the Excel file locating in <Path-to-directory>/DictApp/ClientDictApp/records/, also reset *index.txt*'s content in the same directory to "1   0" (there is a tab between 1 and 0).
+- To delete translation history, delete all data except the header in the Excel file locating in *<Path-to-directory>/DictApp/ClientDictApp/records/*, also reset *index.txt*'s content in the same directory to "1   0" (there is a tab between 1 and 0).
 
 \[Claimer] This application belongs to Big-3 team including:
 - **Nguyen Hoang Long**
