@@ -45,7 +45,7 @@ Meaning of number of CODE field in Data class.
 | 500 | A client has quitted |
 | 502 | Server has a new slot to handle new client |
 ----------
-- 40X or 50X are for load balancer.
+- 40X and 50X are for load balancer.
 - CODE 302 indicates whether the word requested is found in the database or not.
 
 ## Storage
