@@ -3,7 +3,7 @@ Big-3 Team - Final project - NT106 Introduction to Computer Network Programming\
 An English - Vietnamese dictionary application.
 
 # Prerequisite
-Those complements and environments below, which require manual installation, are used in building this application.
+Those complements and environments below, which require manual installation, are used in building this application. To avoid errors and bugs, user should consider to install packets/framework/applications listed below in the same or later version.
 - SQL Server 18
 - Visual Studio 2019
 - .NET Framework 4.6
@@ -14,12 +14,13 @@ Those complements and environments below, which require manual installation, are
 - [Manual](#manual)
 - [Proxy](#proxy)
 - [Load Balance](#load-balance)
+- [Storage](#storage)
 - [Note](#note)
 
 # Manual
 ## Configuration and running application
 - Run CREATE.sql in Database to create new database on your machine (You must ensure the database named Dictionary created in localhost server of your local machine).
-- Manual running application following these steps:
+- Manually run the application following steps below:
 1. Run Server with ServerDictApp.
 2. Set your manual configuration such as IP to the server (optional).
 3. Run client with ClientDictApp.
@@ -44,28 +45,28 @@ Meaning of number of CODE field in Data class.
 | 500 | A client has quitted |
 | 502 | Server has a new slot to handle new client |
 ----------
-- CODE which has value 40X or 50X are for Load Balancing feature.
-- User's translation history is stored locally at User's machine in an Excel file.
-- CODE 302 indicates both found and not found cases to tell Client site.
-- CODE values are personal convention.
+- 40X or 50X are for load balancer.
+- CODE 302 indicates whether the word requested is found in the database or not.
+
+## Storage
+- Translation history of each user is stored locally at User's machine in an Excel file, which can be found in <Path-to-directory>/DictApp/ClientDictApp/records/.
 
 # Proxy
-- Transparent proxy
-- Proxy model applies only for one server model which means only one server is used.
+- Proxy type: Transparent proxy
+- Proxy model applies only for one server model which means only one server is used at a time.
 
 # Load Balance
-- Load balancer is designed for model consist of 2 servers.
-- Load Balancer doesn't do neither encryption nor decryption.
-- Run at least 2 server by simply executing sln file by using Ctrl + F5 before starting running Load Balancer. Require a server has localhost address with port 8888 and one has locahost address with port 9000.
+- Designed for a topology consisting of 2 servers and clients.
+- Requires at least 2 servers in running state to execute, there are two ways to create multiple server from a server source code are either executing *.sln* file using Ctrl + F5 or execute *.exe* as many time as number of servers we need.
+- Requires at least 2 servers running with port 8888 and 9000 at simultaneously, moreover, we can change this configuration in the source code of the load balancer.
 
 # Note
-- The application is for learning and experiment purposes. And I will not hide any error by using try-catch statement.
-- The application are not optimal enough to avoid wasting your machine's resources only while running.
-- The application has not handle enough error cases yet, especially cleaning stage afterward.
-- Note that by default client will connect to server application at port 8080 so the proxy server and load balancing server are set with port 8080 to suit client's preconfiguration. Make sure to consider whether your machine's ports are available or not. You can change the code to suit your machine depended on your flexibility.  
-- Note that if you don't configure capacity at Server site, it will be automatically set by default value which is equal to 2. 
-- If you want to reset Excel local database file, remember to reset index.txt in Records directrory to "1    0" afterward. (there's a tab between 1 and 0)
-- This application belongs to Big-3 team including:
+- After closing the application, there might be some bugs come up due to being turned off suddenly of the sockets. These bugs do not cause any harm to either the computer or the application hence we could ignore them. We can uncomment try-catch statement to avoid these bugs popping up. However, it is not a good practice to ignore or hide bugs.
+- The application has not been optimized hence leading to huge consumption in computer resource.
+- Note that by default client will connect to server application at port 8080 so the proxy server and load balancing server are set with port 8080 to suit client's preconfiguration. Thus, make sure the required ports for this application are available on our machine or we can change it directly in the source code.
+- Capacity of server has a default value which is up to 2 clients are handled by the server. 
+- If you want to reset Excel local database file, remember to also reset index.txt in Records directrory to "1    0" (there is a tab between 1 and 0).
+- \[Claimer] This application belongs to Big-3 team including:
     - **Nguyen Hoang Long**
     - **Nguyen Thanh Tien**
     - **Trinh Huynh Trong Nhan**
