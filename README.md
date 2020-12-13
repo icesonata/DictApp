@@ -1,4 +1,4 @@
-# DictApp\
+# DictApp
 Big-3 Team - Final project - NT106.K21.ANTN\
 An English - Vietnamese dictionary application.
 
