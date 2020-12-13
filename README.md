@@ -65,8 +65,9 @@ Meaning of number of CODE field in Data class.
 - The application has not been optimized hence leading to huge consumption in computer resource.
 - Note that by default client will connect to server application at port 8080 so the proxy server and load balancing server are set with port 8080 to suit client's preconfiguration. Thus, make sure the required ports for this application are available on our machine or we can change it directly in the source code.
 - Capacity of server has a default value which is up to 2 clients are handled by the server. 
-- If you want to reset Excel local database file, remember to also reset index.txt in Records directrory to "1    0" (there is a tab between 1 and 0).
-- \[Claimer] This application belongs to Big-3 team including:
+- To delete translation history, delete all data except the header in the Excel file locating in <Path-to-directory>/DictApp/ClientDictApp/records/, also reset *index.txt*'s content in the same directory to "1   0" (there is a tab between 1 and 0).
+
+\[Claimer] This application belongs to Big-3 team including:
     - **Nguyen Hoang Long**
     - **Nguyen Thanh Tien**
     - **Trinh Huynh Trong Nhan**
