@@ -1,5 +1,5 @@
 # DictApp
-Big-3 Team - Final project - NT106 Introduction to Computer Network Programming\
+Big-3 - Final project - NT106 Introduction to Computer Network Programming\
 An English - Vietnamese dictionary application.
 
 # Prerequisite
@@ -67,7 +67,7 @@ Meaning of number of CODE field in Data class.
 - Capacity of server has a default value which is up to 2 clients are handled by the server. 
 - To delete translation history, delete all data except the header in the Excel file locating in *<Path-to-directory>/DictApp/ClientDictApp/records/*, also reset *index.txt*'s content in the same directory to "1   0" (there is a tab between 1 and 0).
 
-\[Claimer] This application belongs to Big-3 team including:
+Big-3 members:
 - **Nguyen Hoang Long**
 - **Nguyen Thanh Tien**
 - **Trinh Huynh Trong Nhan**
